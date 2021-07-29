@@ -1,1 +1,1 @@
-# RSschool_angular_YoyTube-client-app
+# RSschool_angular_YouTube-client-app
