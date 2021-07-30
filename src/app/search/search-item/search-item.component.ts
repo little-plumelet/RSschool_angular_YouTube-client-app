@@ -7,7 +7,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchItemComponent implements OnInit {
-  // constructor() { }
+  // constructor() {}
 
   ngOnInit(): void {
     console.log('OnInite');
