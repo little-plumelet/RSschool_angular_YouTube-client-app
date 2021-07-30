@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { items } from './search/search-results/temporary-constants';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'YouTube-client-app';
+
+  items = items;
 }

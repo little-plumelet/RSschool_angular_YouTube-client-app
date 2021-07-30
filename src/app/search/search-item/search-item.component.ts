@@ -1,4 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Input,
+} from '@angular/core';
+import { ISearchItem } from '../search-item.model';
 
 @Component({
   selector: 'app-search-item',
@@ -7,7 +13,11 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchItemComponent implements OnInit {
-  // constructor() {}
+  @Input() item?: ISearchItem;
+
+  constructor() {
+    console.log('empty constructor');
+  }
 
   ngOnInit(): void {
     console.log('OnInite');
