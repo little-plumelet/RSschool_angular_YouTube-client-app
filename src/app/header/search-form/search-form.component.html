@@ -1,5 +1,15 @@
 <form class="search-form">
-  <input matInput class="search_input" type="text" placeholder="What do you want to find?">
-  <button  mat-raised-button color="primary">Search</button>
+  <input
+  matInput
+  class="search_input"
+  type="text"
+  name="search"
+  placeholder="What do you want to find?"
+  [(ngModel)]="searchInput"
+  >
+  <button
+   mat-raised-button color="primary"
+   (click)="getResult()"
+  >Search</button>
   <app-settings></app-settings>
 </form>

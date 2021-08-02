@@ -1,5 +1,8 @@
 <header class="header">
   <app-logo></app-logo>
-  <app-search-form></app-search-form>
+   <!-- работа через input/output - позже заменить на сервисы или на подписку -->
+  <app-search-form
+    (searchResult)="updateSearchResult($event)"
+  ></app-search-form>
   <app-login-form></app-login-form>
 </header>
