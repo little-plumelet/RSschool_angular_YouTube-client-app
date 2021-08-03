@@ -1,6 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { ISearchItem } from 'src/app/search/search-item.model';
-//import { EventEmitter } from 'stream';
 import { items } from '../../search/search-results/temporary-constants';
 
 @Component({
@@ -10,15 +15,16 @@ import { items } from '../../search/search-results/temporary-constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchFormComponent implements OnInit {
-  @Output() searchResult: EventEmitter<ISearchItem[]> = new EventEmitter<ISearchItem[]>()
+  @Output() searchResult: EventEmitter<ISearchItem[]> = new EventEmitter<ISearchItem[]>();
 
   searchInput;
+
   searchResultArr: ISearchItem[];
 
   constructor() {
     this.searchInput = '';
-    this.searchResultArr = []
-   }
+    this.searchResultArr = [];
+  }
 
   ngOnInit(): void {
     console.log('On init');
@@ -29,5 +35,4 @@ export class SearchFormComponent implements OnInit {
     this.searchResult.emit(this.searchResultArr);
     this.searchInput = '';
   }
-
 }

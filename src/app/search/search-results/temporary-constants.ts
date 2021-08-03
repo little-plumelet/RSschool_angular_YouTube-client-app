@@ -86,7 +86,7 @@ import { ISearchItem } from '../search-item.model';
       etag: '\\Fznwjl6JEQdo1MGvHOGaz_YanRU/uto79F2R8W05GFpiUAcLdFGs7PQ\\',
       id: 'Fdf5aTYRW0E',
       snippet: {
-        publishedAt: '2019-01-23T17:46:58.000Z',
+        publishedAt: '2021-08-01T17:46:58.000Z',
         channelId: 'UC29ju8bIPH5as8OGnQzwJyA',
         title: 'Angular Crash Course',
         description: 'In this video we will talk about what Angular is and then jump in and build a small app With Angular 7, looking at most of the fundamental concepts like components, services, modules, etc\n\nSponsor:\nhttp://www.netlify.com\n\nCode:\nhttps://github.com/bradtraversy/angular-crash-todolist\n\n💖 Become a Patron: Show support & get perks!\nhttp://www.patreon.com/traversymedia\n\nWebsite & Udemy Courses\nhttp://www.traversymedia.com\n\nFollow Traversy Media:\nhttps://www.facebook.com/traversymedia\nhttps://www.twitter.com/traversymedia\nhttps://www.instagram.com/traversymedia',
@@ -225,7 +225,7 @@ import { ISearchItem } from '../search-item.model';
       'etag': '\\Fznwjl6JEQdo1MGvHOGaz_YanRU/cDwx4Ds5-J9CmiqmazUetzrLZKY\\',
       'id': 'Rf54BH35yrY',
       'snippet': {
-        'publishedAt': '2019-09-04T15:00:12.000Z',
+        'publishedAt': '2021-07-20T15:00:12.000Z',
         'channelId': 'UCg8ss4xW9jASrqWGP30jXiw',
         'title': 'Angular 8 Основы. Полный Курс для начинающих',
         'description': 'Полный курс по Angular 8+:\nhttps://clc.to/angular\n\nДобавляйте меня в ВК: https://vk.com/vladilen.minin\nTelegram: https://teleg.one/js_by_vladilen\nInstagram: https://www.instagram.com/vladilen.minin\nГруппа ВК: https://vk.com/js_by_vladilen\n\nПоддержать выпуск новых видео:\nЯД: https://money.yandex.ru/to/410013757655670\nPayPal: https://www.paypal.me/vladilenm \n\nУрок по Angular. В этом курсе вы познакомитесь со всеми основными элементами, которые есть в Angular с полного нуля\n\nAngular 8 Основы. Полный Курс. Урок для Новичков',
@@ -304,7 +304,7 @@ import { ISearchItem } from '../search-item.model';
       'etag': '\\Fznwjl6JEQdo1MGvHOGaz_YanRU/_99tEunMszVYvCj2-1aUTKgOoSY\\',
       'id': 'm0yGx2MGZWg',
       'snippet': {
-        'publishedAt': '2018-05-13T07:44:08.000Z',
+        'publishedAt': '2021-04-13T07:44:08.000Z',
         'channelId': 'UCe_H8hzx9WV7Ca7Ps5gt72Q',
         'title': 'Что такое Angular. Обзор возможностей',
         'description': 'В этом видео речь пойдет про javascript фреймворк Angular. Я расскажу что такое Angular, где и когда его применяют, а так же сделаю небольшой обзор его возможностей. Расскажу чем фреймворк сложен для новичков и чем он действительно хорош для новых проектов. Сейчас для того что б стать junior javascript разработчиком нужно обязательно знать хотя бы один фреймворк js и ангуляр будет отличным выбором.',

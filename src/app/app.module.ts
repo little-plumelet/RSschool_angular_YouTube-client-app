@@ -12,6 +12,8 @@ import { LogoComponent } from './header/logo/logo.component';
 import { SearchFormComponent } from './header/search-form/search-form.component';
 import { SettingsComponent } from './header/settings/settings.component';
 import { LoginFormComponent } from './header/login-form/login-form.component';
+import { FilterComponent } from './search/filter/filter.component';
+import { SearchItemStyleDirective } from './search/search-item-style.directive';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { LoginFormComponent } from './header/login-form/login-form.component';
     SearchFormComponent,
     SettingsComponent,
     LoginFormComponent,
+    FilterComponent,
+    SearchItemStyleDirective,
   ],
   imports: [
     BrowserModule,

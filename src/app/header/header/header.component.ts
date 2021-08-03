@@ -1,5 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy,  Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { ISearchItem } from 'src/app/search/search-item.model';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -7,7 +14,7 @@ import { ISearchItem } from 'src/app/search/search-item.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit {
-  @Output() searchResultH: EventEmitter<ISearchItem[]> = new EventEmitter<ISearchItem[]>()
+  @Output() searchResultH: EventEmitter<ISearchItem[]> = new EventEmitter<ISearchItem[]>();
 
   searchResultArrH: ISearchItem[];
 
@@ -21,7 +28,7 @@ export class HeaderComponent implements OnInit {
 
   // работа через input/output - позже заменить на сервисы или на подписку
   updateSearchResult(searchResultArr: ISearchItem[]) {
-   this.searchResultArrH = searchResultArr;
-   this.searchResultH.emit(this.searchResultArrH);
+    this.searchResultArrH = searchResultArr;
+    this.searchResultH.emit(this.searchResultArrH);
   }
 }
