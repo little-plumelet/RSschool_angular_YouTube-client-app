@@ -7,7 +7,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterComponent implements OnInit {
-  // constructor() { }
+  // constructor() {}
 
   ngOnInit(): void {
     console.log('OnInit');

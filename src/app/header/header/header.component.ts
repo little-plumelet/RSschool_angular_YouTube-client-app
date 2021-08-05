@@ -6,6 +6,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { ISearchItem } from 'src/app/search/search-item.model';
+import { ShowSettingsService } from 'src/app/services/show-settings.service';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
   searchResultArrH: ISearchItem[];
 
-  constructor() {
+  constructor(public showSettingsService: ShowSettingsService) {
     this.searchResultArrH = [];
   }
 
