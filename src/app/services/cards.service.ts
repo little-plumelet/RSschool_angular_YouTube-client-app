@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-  Observable,
-  of,
-  Subject,
-  BehaviorSubject,
+  BehaviorSubject, Observable, Subject
 } from 'rxjs';
 import { ISearchItem } from '../search/search-item.model';
 import { items } from '../search/search-results/temporary-constants';
@@ -62,7 +59,7 @@ export class CardsService {
     // return cardsArr;
   }
 
-  sortDate(sort: boolean):Observable<ISearchItem[]> {
+  sortDate(sort: boolean) {
     console.log('sortDate');
 
     if (sort) {
@@ -70,8 +67,8 @@ export class CardsService {
         const el1 = new Date(a.snippet.publishedAt.replace('/(T[A-Za-z0-9_-]*/g', ''));
         const el2 = new Date(b.snippet.publishedAt.replace('/(T[A-Za-z0-9_-]*/g', ''));
         if (Math.floor((Date.UTC(el1.getFullYear(), el1.getMonth(), el1.getDate())
-            - Date.UTC(el2.getFullYear(), el2.getMonth(), el2.getDate()))
-            / (1000 * 60 * 60 * 24)) > 0) return 1;
+          - Date.UTC(el2.getFullYear(), el2.getMonth(), el2.getDate()))
+          / (1000 * 60 * 60 * 24)) > 0) return 1;
         return -1;
       });
     } else {
@@ -79,15 +76,14 @@ export class CardsService {
         const el1 = new Date(a.snippet.publishedAt.replace('/(T[A-Za-z0-9_-]*/g', ''));
         const el2 = new Date(b.snippet.publishedAt.replace('/(T[A-Za-z0-9_-]*/g', ''));
         if (Math.floor((Date.UTC(el1.getFullYear(), el1.getMonth(), el1.getDate())
-            - Date.UTC(el2.getFullYear(), el2.getMonth(), el2.getDate()))
-            / (1000 * 60 * 60 * 24)) > 0) return -1;
+          - Date.UTC(el2.getFullYear(), el2.getMonth(), el2.getDate()))
+          / (1000 * 60 * 60 * 24)) > 0) return -1;
         return 1;
       });
     }
 
     this.cardsArr = Array.from(this.cardsArr);
-    console.log('sortDate', this.cardsArr);
-    const cardsArr = of(this.cardsArr);
-    return cardsArr;
+
+    this.cardsArrChange.next(this.cardsArr);
   }
 }

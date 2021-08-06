@@ -1,10 +1,7 @@
 import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  OnChanges,
+  ChangeDetectionStrategy, Component, OnChanges, OnInit
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CardsService } from 'src/app/services/cards.service';
 import { FilterCardsService } from 'src/app/services/filter-cards.service';
 import { ISearchItem } from '../search-item.model';
@@ -24,7 +21,9 @@ export class SearchResultsComponent implements OnInit, OnChanges {
 
   bool: boolean;
 
-  subscription: Subscription;
+  // subscription: Subscription;
+
+  itemsArrObservable: Observable<ISearchItem[]>;
 
   constructor(
     public filterCardsService: FilterCardsService,
@@ -34,9 +33,11 @@ export class SearchResultsComponent implements OnInit, OnChanges {
     this.filterW = '';
     this.bool = true;
     console.log('empty constructor', filterCardsService);
-    this.subscription = this.cardsService.getCards().subscribe((cards) => {
-      this.itemsArr = cards;
-    });
+    // this.subscription = this.cardsService.getCards().subscribe((cards) => {
+    //   this.itemsArr = cards;
+    // });
+
+    this.itemsArrObservable = this.cardsService.getCards();
   }
 
   ngOnInit(): void {
@@ -67,11 +68,11 @@ export class SearchResultsComponent implements OnInit, OnChanges {
     // console.log('888fffff!', this.itemsArr)
   }
 
-  sortCardsDate(): void {
-    this.cardsService.sortDate(this.bool = !this.bool)
-      .subscribe((cardsArr) => { this.itemsArr = Array.from(cardsArr); });
-    console.log('888fffff!', this.itemsArr);
-  }
+  // sortCardsDate(): void {
+  //   this.cardsService.sortDate(this.bool = !this.bool)
+  //     .subscribe((cardsArr) => { this.itemsArr = Array.from(cardsArr); });
+  //   console.log('888fffff!', this.itemsArr);
+  // }
 
   getFilterWord(): void {
     console.log('6666');

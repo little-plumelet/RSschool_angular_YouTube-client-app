@@ -1,8 +1,4 @@
-
-<app-search-item
-  *ngFor="let item of (itemsArr | filterCards: filterW)"
-    [item]="item"
->
+<app-search-item *ngFor="let item of (itemsArrObservable | async | filterCards: filterW)" [item]="item">
 </app-search-item>
   <!-- <form class="filter-form" class="filter-panel-item">
     <input
