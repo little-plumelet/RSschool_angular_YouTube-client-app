@@ -13,7 +13,6 @@ import { FilterCardsService } from 'src/app/services/filter-cards.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterComponent implements OnInit {
-
   filterW: string;
 
   sortCount: boolean;

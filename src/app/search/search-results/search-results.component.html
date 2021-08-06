@@ -1,6 +1,6 @@
 
 <app-search-item
-  *ngFor="let item of (cardsService.getCards() | filterCards: filterW)"
+  *ngFor="let item of (itemsArr | filterCards: filterW)"
     [item]="item"
 >
 </app-search-item>
