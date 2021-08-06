@@ -14,6 +14,7 @@ import { SettingsComponent } from './header/settings/settings.component';
 import { LoginFormComponent } from './header/login-form/login-form.component';
 import { FilterComponent } from './search/filter/filter.component';
 import { SearchItemStyleDirective } from './search/search-item-style.directive';
+import { FilterCardsPipe } from './pipes/filter-cards.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SearchItemStyleDirective } from './search/search-item-style.directive';
     LoginFormComponent,
     FilterComponent,
     SearchItemStyleDirective,
+    FilterCardsPipe,
   ],
   imports: [
     BrowserModule,

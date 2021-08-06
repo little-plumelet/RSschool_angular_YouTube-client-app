@@ -1,4 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { CardsService } from 'src/app/services/cards.service';
+import { FilterCardsService } from 'src/app/services/filter-cards.service';
 
 @Component({
   selector: 'app-filter',
@@ -7,7 +13,18 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterComponent implements OnInit {
-  // constructor() {}
+
+  filterW: string;
+
+  sortCount: boolean;
+
+  sortDate: boolean;
+
+  constructor(public filterCardsService: FilterCardsService, public cardsService: CardsService) {
+    this.filterW = '';
+    this.sortCount = true;
+    this.sortDate = true;
+  }
 
   ngOnInit(): void {
     console.log('OnInit');

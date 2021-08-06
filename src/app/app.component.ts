@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ISearchItem } from './search/search-item.model';
+import { CardsService } from './services/cards.service';
 // import { items } from './search/search-results/temporary-constants';
 
 @Component({
@@ -12,6 +13,7 @@ export class AppComponent {
 
   items: ISearchItem[] = [];
 
+  constructor(public cardsService: CardsService) {}
   // работа через input/output - позже заменить на сервисы или на подписку
   updateSearchResult2(searchResultArrH: ISearchItem[]) {
     this.items = searchResultArrH;

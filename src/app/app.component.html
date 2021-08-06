@@ -1,5 +1,4 @@
-<app-header
- (searchResultH)="updateSearchResult2($event)">
-</app-header>
+<app-header></app-header>
 <app-search-results
-[items]="items"></app-search-results>
+*ngIf="cardsService.cardsArr.length"
+></app-search-results>

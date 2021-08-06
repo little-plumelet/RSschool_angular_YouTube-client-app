@@ -6,6 +6,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { ISearchItem } from 'src/app/search/search-item.model';
+import { CardsService } from 'src/app/services/cards.service';
 import { items } from '../../search/search-results/temporary-constants';
 
 @Component({
@@ -15,13 +16,13 @@ import { items } from '../../search/search-results/temporary-constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchFormComponent implements OnInit {
-  @Output() searchResult: EventEmitter<ISearchItem[]> = new EventEmitter<ISearchItem[]>();
+  //@Output() searchResult: EventEmitter<ISearchItem[]> = new EventEmitter<ISearchItem[]>();
 
   searchInput;
 
   searchResultArr: ISearchItem[];
 
-  constructor() {
+  constructor(private cardsService: CardsService) {
     this.searchInput = '';
     this.searchResultArr = [];
   }
@@ -31,8 +32,9 @@ export class SearchFormComponent implements OnInit {
   }
 
   getResult() {
-    this.searchResultArr = items; // этот код временно - здесь мы должны получить результат поиска
-    this.searchResult.emit(this.searchResultArr);
+    console.log('get res')
+    this.cardsService.createCards(); // этот код временно - здесь мы должны получить результат поиска
+    // this.searchResult.emit(this.searchResultArr);
     this.searchInput = '';
   }
 }
