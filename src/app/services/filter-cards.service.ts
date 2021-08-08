@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FilterCardsService {
   filterWord: string;
 
+  filterWordChange: Subject<string> = new BehaviorSubject<string>('');
+
   constructor() {
     this.filterWord = '';
+
+    this.filterWordChange.subscribe((fw) => {
+      this.filterWord = fw;
+    });
   }
 
-  changeFilterWord(fw: string)
-  {
+  changeFilterWord(fw: string) {
     this.filterWord = fw;
-    console.log('this.filterWord', this.filterWord);
   }
 
-  getFilterWord():Observable<string>
-  {
-    const word = of (this.filterWord)
-    console.log('this.filterWord', this.filterWord, word);
-    return word;
+  getFilterWord():Observable<string> {
+    return this.filterWordChange.asObservable();
   }
 }

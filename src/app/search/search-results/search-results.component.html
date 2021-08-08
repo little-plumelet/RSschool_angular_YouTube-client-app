@@ -1,21 +1,6 @@
 
 <app-search-item
-  *ngFor="let item of (itemsArr | filterCards: filterW)"
+  *ngFor="let item of (itemsArrObservable | async | filterCards: filterCardsService.filterWord)"
     [item]="item"
 >
 </app-search-item>
-  <!-- <form class="filter-form" class="filter-panel-item">
-    <input
-      matInput
-      class="filter-input"
-      type="text"
-      name="filter"
-      id="key-word-filter"
-      placeholder="by word or sentence"
-      [(ngModel)]="filterW"
-    >
-    <button
-      class="filter-input-button"
-      mat-stroked-button color="primary"
-      (click)="changeFilterWord(filterW)"
-  >filter</button> -->

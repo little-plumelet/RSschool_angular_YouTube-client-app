@@ -2,12 +2,10 @@ import {
   Component,
   OnInit,
   ChangeDetectionStrategy,
-  Output,
-  EventEmitter,
 } from '@angular/core';
 import { ISearchItem } from 'src/app/search/search-item.model';
 import { CardsService } from 'src/app/services/cards.service';
-import { items } from '../../search/search-results/temporary-constants';
+import { FilterCardsService } from 'src/app/services/filter-cards.service';
 
 @Component({
   selector: 'app-search-form',
@@ -16,13 +14,12 @@ import { items } from '../../search/search-results/temporary-constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchFormComponent implements OnInit {
-  //@Output() searchResult: EventEmitter<ISearchItem[]> = new EventEmitter<ISearchItem[]>();
-
   searchInput;
 
   searchResultArr: ISearchItem[];
 
-  constructor(private cardsService: CardsService) {
+  constructor(public cardsService: CardsService,
+    public filterCardsService: FilterCardsService) {
     this.searchInput = '';
     this.searchResultArr = [];
   }
@@ -32,9 +29,7 @@ export class SearchFormComponent implements OnInit {
   }
 
   getResult() {
-    console.log('get res')
-    this.cardsService.createCards(); // этот код временно - здесь мы должны получить результат поиска
-    // this.searchResult.emit(this.searchResultArr);
+    this.cardsService.createCards(); // временный код - здесь мы должны получить результат поиска
     this.searchInput = '';
   }
 }
