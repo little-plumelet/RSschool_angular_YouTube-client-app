@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './core/pages/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule) },
+  { path: '', loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
+  { path: 'main', loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule) },
   { path: '**', component: NotFoundComponent },
 ];
 
