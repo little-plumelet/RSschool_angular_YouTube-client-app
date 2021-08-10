@@ -1,30 +1,15 @@
 <mat-card *ngIf="item" class="example-card">
-  <img mat-card-image [src]="item.snippet.thumbnails.high.url" alt="Photo of a Shiba Inu">
+  <img mat-card-image [src]="item.snippet.thumbnails.high.url" alt="Photo of the card">
   <mat-card-content>
-    <div class="card-statistics">
-      <div class="card-statistics_item">
-        <mat-icon class="card-icon" aria-hidden="false" aria-label="view-count">visibility</mat-icon>
-        <p>{{ item.statistics.viewCount }}</p>
-      </div>
-      <div class="card-statistics_item">
-        <mat-icon class="card-icon" aria-hidden="false" aria-label="Example home icon">favorite</mat-icon>
-        <p>{{ item.statistics.likeCount }}</p>
-      </div>
-      <div class="card-statistics_item">
-        <mat-icon class="card-icon" aria-hidden="false" aria-label="Example home icon">thumb_down</mat-icon>
-        <p>{{ item.statistics.dislikeCount }}</p>
-      </div>
-      <div class="card-statistics_item">
-        <mat-icon class="card-icon" aria-hidden="false" aria-label="Example home icon">speaker_notes</mat-icon>
-        <p>{{ item.statistics.commentCount }}</p>
-      </div>
-    </div>
+    <app-statistics [item]="item"></app-statistics>
     <mat-card-title>{{ item.snippet.title }}</mat-card-title>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>More...</button>
+    <button mat-stroked-button [routerLink]="['/main', item.id]">
+      More...
+    </button>
   </mat-card-actions>
   <mat-card-footer class="card-footer">
-    <div class="date-indicator" appSearchItemStyle days="{{ diff }}"></div>
+    <div class="date-indicator" appSearchItemStyle dateStr="{{ item.snippet.publishedAt }}"></div>
   </mat-card-footer>
 </mat-card>

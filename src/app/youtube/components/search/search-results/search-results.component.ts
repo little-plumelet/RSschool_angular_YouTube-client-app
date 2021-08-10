@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CardsService } from '../../../services/cards.service';
+import { YoutubeService } from '../../../services/youtube.service';
 import { FilterCardsService } from '../../../services/filter-cards.service';
 import { ISearchItem } from '../../../models/search-item.model';
 
@@ -19,9 +19,9 @@ export class SearchResultsComponent implements OnInit {
 
   constructor(
     public filterCardsService: FilterCardsService,
-    public cardsService: CardsService,
+    public youtubeService: YoutubeService,
   ) {
-    this.itemsArrObservable = this.cardsService.getCards();
+    this.itemsArrObservable = this.youtubeService.getCards();
   }
 
   ngOnInit(): void {

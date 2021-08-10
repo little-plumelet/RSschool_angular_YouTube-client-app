@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { CardsService } from '../../services/cards.service';
+import { YoutubeService } from '../../services/youtube.service';
 
 @Component({
   selector: 'app-main-page',
@@ -8,7 +8,7 @@ import { CardsService } from '../../services/cards.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainPageComponent implements OnInit {
-  constructor(public cardsService: CardsService) {}
+  constructor(public cardsService: YoutubeService) {}
 
   ngOnInit(): void {
     console.log('OnInit');

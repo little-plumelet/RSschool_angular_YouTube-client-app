@@ -10,16 +10,23 @@ import {
   selector: '[appSearchItemStyle]',
 })
 export class SearchItemStyleDirective implements OnInit {
-  @Input() days: string = '';
+  @Input() dateStr: string = '';
 
   diff: number;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    this.diff = Number(this.days);
+    this.diff = 0;
   }
 
   ngOnInit() {
-    this.diff = Number(this.days);
+    const currentDate = new Date();
+    this.dateStr = this.dateStr.replace('/(T[A-Za-z0-9_-]*/g', '');
+    const date = new Date(this.dateStr);
+    this.diff = Math.floor((Date.UTC(currentDate.getFullYear(),
+      currentDate.getMonth(), currentDate.getDate())
+    - Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
+    / (1000 * 60 * 60 * 24));
+
     if (this.diff < 7) this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'green');
     else if (this.diff < 30) this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'blue');
     else if (this.diff >= 30 && this.diff < 180) this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'yellow');

@@ -3,7 +3,7 @@
   <button
     class="filter-panel-item"
     mat-stroked-button color="primary"
-    (click)="cardsService.sortDate(sortDate = !sortDate)"
+    (click)="youtubeService.sortDate(sortDate = !sortDate)"
     (click)="toggleIcon('iconDateContent')"
   >
   <span>date</span>
@@ -12,7 +12,7 @@
   <button
     class="filter-panel-item"
     mat-stroked-button color="primary"
-    (click)="cardsService.sortViewsCount(sortCount = !sortCount)"
+    (click)="youtubeService.sortViewsCount(sortCount = !sortCount)"
     (click)="toggleIcon('iconViewsCountContent')"
   >
   <span>views count</span>
@@ -32,7 +32,7 @@
       class="filter-input-button"
       mat-stroked-button color="primary"
       (click)="filterCardsService.changeFilterWord(filterW)"
-      (click)="cardsService.filter()"
+      (click)="youtubeService.filter()"
   >filter</button>
 </form>
 </div>

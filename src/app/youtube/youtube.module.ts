@@ -8,6 +8,9 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SearchResultsComponent } from './components/search/search-results/search-results.component';
 import { FilterCardsPipe } from './pipes/filter-cards.pipe';
 import { SearchItemStyleDirective } from './directives/search-item-style.directive';
+import { DetailedPageComponent } from './pages/detailed-page/detailed-page.component';
+import { DetailedItemCardComponent } from './components/detailed-item-card/detailed-item-card.component';
+import { StatisticsComponent } from './components/search/statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +19,9 @@ import { SearchItemStyleDirective } from './directives/search-item-style.directi
     SearchItemComponent,
     FilterCardsPipe,
     SearchItemStyleDirective,
+    DetailedPageComponent,
+    DetailedItemCardComponent,
+    StatisticsComponent,
   ],
   imports: [
     CommonModule,
@@ -23,6 +29,7 @@ import { SearchItemStyleDirective } from './directives/search-item-style.directi
     FormsModule,
     RouterModule.forChild([
       { path: '', component: MainPageComponent },
+      { path: ':id', component: DetailedPageComponent }
     ]),
   ],
   exports: [RouterModule],

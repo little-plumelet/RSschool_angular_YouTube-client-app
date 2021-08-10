@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { ISearchItem } from '../../../../youtube/models/search-item.model';
-import { CardsService } from '../../../../youtube/services/cards.service';
+import { YoutubeService } from '../../../../youtube/services/youtube.service';
 import { FilterCardsService } from '../../../../youtube/services/filter-cards.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class SearchFormComponent implements OnInit {
 
   searchResultArr: ISearchItem[];
 
-  constructor(public cardsService: CardsService,
+  constructor(public youtubeService: YoutubeService,
     public filterCardsService: FilterCardsService) {
     this.searchInput = '';
     this.searchResultArr = [];
@@ -29,7 +29,7 @@ export class SearchFormComponent implements OnInit {
   }
 
   getResult() {
-    this.cardsService.createCards(); // временный код - здесь мы должны получить результат поиска
+    this.youtubeService.createCards(); // временный код - здесь мы должны получить результат поиска
     this.searchInput = '';
   }
 }

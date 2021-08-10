@@ -10,17 +10,25 @@ import { items } from '../components/search/search-results/temporary-constants';
 @Injectable({
   providedIn: 'root',
 })
-export class CardsService {
+export class YoutubeService {
   cardsArr: ISearchItem[];
 
   cardsArrChange: Subject<ISearchItem[]> = new BehaviorSubject<ISearchItem[]>([] as ISearchItem[]);
 
+  card: ISearchItem | undefined;
+
   constructor() {
     this.cardsArr = [];
+
+    this.card = {} as ISearchItem;
 
     this.cardsArrChange.subscribe((arr) => {
       this.cardsArr = arr;
     });
+
+    // this.cardChange.subscribe((card) => {
+    //   this.card = card;
+    // });
   }
 
   createCards(): void {
@@ -76,5 +84,10 @@ export class CardsService {
   filter() {
     this.cardsArr = Array.from(this.cardsArr);
     this.cardsArrChange.next(this.cardsArr);
+  }
+
+  getCardById(id: string): ISearchItem | undefined {
+    this.card = this.cardsArr.find((el) => el.id === id);
+    return this.card;
   }
 }

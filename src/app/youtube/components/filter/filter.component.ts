@@ -3,8 +3,8 @@ import {
   OnInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { CardsService } from '../../../services/cards.service';
-import { FilterCardsService } from '../../../services/filter-cards.service';
+import { YoutubeService } from '../../services/youtube.service';
+import { FilterCardsService } from '../../services/filter-cards.service';
 
 @Component({
   selector: 'app-filter',
@@ -23,7 +23,10 @@ export class FilterComponent implements OnInit {
 
   iconViewsCountContent: string;
 
-  constructor(public filterCardsService: FilterCardsService, public cardsService: CardsService) {
+  constructor(
+    public filterCardsService: FilterCardsService,
+    public youtubeService: YoutubeService,
+  ) {
     this.filterW = '';
     this.sortCount = true;
     this.sortDate = true;
