@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnChanges } from '@angular/core';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login-form',
@@ -6,6 +7,17 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./login-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnChanges {
+  name: string;
 
+  password: string;
+
+  constructor(public loginService: LoginService) {
+    this.name = '';
+    this.password = '';
+  }
+
+  ngOnChanges() {
+    console.log('input-name = ', this.name);
+  }
 }

@@ -26,7 +26,6 @@ export class DetailedItemCardComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.item = this.youtubeService.getCardById(params.id);
-      console.log(params.id, this.item);
     });
   }
 }

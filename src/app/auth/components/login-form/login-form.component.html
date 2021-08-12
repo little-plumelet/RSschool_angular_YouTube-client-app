@@ -1,7 +1,33 @@
 <form class="form-login">
   <span class="form-login-title">LOGIN</span>
   <label class="form-login-label" for="login">Login:</label>
-  <input matInput id="login" class="login-input" type="text" placeholder="Your name" required>
+  <input
+  matInput
+  id="login"
+  name="name"
+  class="login-input"
+  type="text"
+  placeholder="Your name"
+  required
+  [(ngModel)]="name"
+  >
   <label class="form-login-label" for="password">Password:</label>
-  <input matInput id="password" class="password-input" type="password" placeholder="Password" required>
-  <button class="login-btn" mat-raised-button color="primary">LOGIN</button>
+  <input
+  matInput
+  id="password"
+  name="Password"
+  class="password-input"
+  type="password"
+  placeholder="Password"
+  required
+  [(ngModel)]="password"
+  >
+  <button
+  class="login-btn"
+  mat-raised-button
+  color="primary"
+  (click)="loginService.submitDateToLocalStorage(name, password)"
+  [routerLink]="['/main']"
+  >
+  LOGIN
+</button>

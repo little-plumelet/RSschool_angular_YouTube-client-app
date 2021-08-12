@@ -28,8 +28,11 @@ import { StatisticsComponent } from './components/search/statistics/statistics.c
     SharedModule,
     FormsModule,
     RouterModule.forChild([
-      { path: '', component: MainPageComponent },
-      { path: ':id', component: DetailedPageComponent }
+      {
+        path: 'main',
+        component: MainPageComponent,
+      },
+      { path: 'main/:id', component: DetailedPageComponent },
     ]),
   ],
   exports: [RouterModule],

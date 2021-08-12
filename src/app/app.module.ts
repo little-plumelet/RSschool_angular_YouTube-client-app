@@ -14,12 +14,12 @@ import { YoutubeModule } from './youtube/youtube.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     CoreModule,
     YoutubeModule,
     SharedModule,
+    AppRoutingModule,
   ],
   exports: [],
   providers: [],

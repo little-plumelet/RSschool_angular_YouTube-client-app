@@ -25,10 +25,6 @@ export class YoutubeService {
     this.cardsArrChange.subscribe((arr) => {
       this.cardsArr = arr;
     });
-
-    // this.cardChange.subscribe((card) => {
-    //   this.card = card;
-    // });
   }
 
   createCards(): void {

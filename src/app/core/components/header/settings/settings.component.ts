@@ -12,9 +12,7 @@ import { ShowSettingsService } from '../../../services/show-settings.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsComponent implements OnInit {
-  constructor(public showSettingsService: ShowSettingsService) {
-    console.log(showSettingsService);
-  }
+  constructor(public showSettingsService: ShowSettingsService) {}
 
   ngOnInit(): void {
     console.log('On init');

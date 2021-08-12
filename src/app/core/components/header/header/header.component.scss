@@ -13,3 +13,9 @@
   align-items: center;
   margin-bottom: 20px;
 }
+app-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}

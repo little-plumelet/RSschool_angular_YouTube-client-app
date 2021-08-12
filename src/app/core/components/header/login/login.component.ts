@@ -1,4 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { Subject } from 'rxjs';
+import { LoginService } from 'src/app/auth/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +11,10 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent implements OnInit {
-  // constructor() { }
+export class LoginComponent {
+  stream$: Subject<string>;
 
-  ngOnInit(): void {
-    console.log('On init');
+  constructor(public loginService: LoginService) {
+    this.stream$ = this.loginService.getName();
   }
 }

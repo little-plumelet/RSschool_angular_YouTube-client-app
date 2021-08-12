@@ -20,5 +20,6 @@ export class StatisticsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('OnInit');
   }
 }
