@@ -3,7 +3,7 @@ import {
   OnInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ISearchItem } from '../../models/search-item.model';
 import { YoutubeService } from '../../services/youtube.service';
 
@@ -19,6 +19,7 @@ export class DetailedItemCardComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public youtubeService: YoutubeService,
+    private router: Router,
   ) {
     this.item = {} as ISearchItem;
   }
@@ -26,6 +27,7 @@ export class DetailedItemCardComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.item = this.youtubeService.getCardById(params.id);
+      if (!this.item) this.router.navigate(['/main/error']);
     });
   }
 }

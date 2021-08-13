@@ -20,6 +20,7 @@ export class LoginService {
     console.log('name = ', this.name);
     this.password = '';
     this.isLogged = Boolean(localStorage.getItem('name'));
+    console.log('name = ', this.isLogged);
     this.sub = this.stream$.subscribe((value) => {
       this.name = value;
     });
