@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject, Subscription } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  Subscription,
+} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +18,10 @@ export class LoginService {
 
   stream$: BehaviorSubject<string> = new BehaviorSubject<string>('Your name');
 
+  isLoggedStream$: Observable<boolean> = new Observable<boolean>((observer) => {
+    observer.next(this.isLogged);
+  });
+
   sub: Subscription;
 
   constructor() {
@@ -22,14 +31,8 @@ export class LoginService {
     this.sub = this.stream$.subscribe((value) => {
       this.name = value;
     });
-  }
 
-  isAuthentificated():Promise<boolean> {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(this.isLogged);
-      }, 1000);
-    });
+    this.isLoggedStream$.subscribe((value) => { this.isLogged = value; });
   }
 
   submitDateToLocalStorage(name: string, password: string) {
