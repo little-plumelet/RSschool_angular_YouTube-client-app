@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -14,7 +13,7 @@ import { ISearchItem } from '../../../models/search-item.model';
   styleUrls: ['./search-results.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent {
   itemsArrObservable: Observable<ISearchItem[]>;
 
   constructor(
@@ -22,9 +21,5 @@ export class SearchResultsComponent implements OnInit {
     public youtubeService: YoutubeService,
   ) {
     this.itemsArrObservable = this.youtubeService.getCards();
-  }
-
-  ngOnInit(): void {
-    console.log('OnInit');
   }
 }

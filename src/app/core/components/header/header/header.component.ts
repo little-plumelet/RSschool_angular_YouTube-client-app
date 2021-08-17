@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   Output,
   EventEmitter,
@@ -14,17 +13,13 @@ import { ShowSettingsService } from '../../../services/show-settings.service';
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Output() searchResultH: EventEmitter<ISearchItem[]> = new EventEmitter<ISearchItem[]>();
 
   searchResultArrH: ISearchItem[];
 
   constructor(public showSettingsService: ShowSettingsService) {
     this.searchResultArrH = [];
-  }
-
-  ngOnInit(): void {
-    console.log('OnInite');
   }
 
   // работа через input/output - позже заменить на сервисы или на подписку

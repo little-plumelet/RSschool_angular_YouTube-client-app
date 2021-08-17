@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { ISearchItem } from '../../../../youtube/models/search-item.model';
@@ -13,7 +12,7 @@ import { FilterCardsService } from '../../../../youtube/services/filter-cards.se
   styleUrls: ['./search-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchFormComponent implements OnInit {
+export class SearchFormComponent {
   searchInput;
 
   searchResultArr: ISearchItem[];
@@ -22,10 +21,6 @@ export class SearchFormComponent implements OnInit {
     public filterCardsService: FilterCardsService) {
     this.searchInput = '';
     this.searchResultArr = [];
-  }
-
-  ngOnInit(): void {
-    console.log('On init');
   }
 
   getResult() {

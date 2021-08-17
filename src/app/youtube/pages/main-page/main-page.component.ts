@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { YoutubeService } from '../../services/youtube.service';
 
 @Component({
@@ -7,10 +7,6 @@ import { YoutubeService } from '../../services/youtube.service';
   styleUrls: ['./main-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent {
   constructor(public cardsService: YoutubeService) {}
-
-  ngOnInit(): void {
-    console.log('OnInit');
-  }
 }

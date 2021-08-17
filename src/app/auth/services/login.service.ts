@@ -17,17 +17,14 @@ export class LoginService {
 
   constructor() {
     this.name = 'Your name';
-    console.log('name = ', this.name);
     this.password = '';
     this.isLogged = Boolean(localStorage.getItem('name'));
-    console.log('name = ', this.isLogged);
     this.sub = this.stream$.subscribe((value) => {
       this.name = value;
     });
   }
 
   isAuthentificated():Promise<boolean> {
-    console.log('logservice ', this.isLogged);
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(this.isLogged);

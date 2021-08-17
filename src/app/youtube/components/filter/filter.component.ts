@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { YoutubeService } from '../../services/youtube.service';
@@ -12,7 +11,7 @@ import { FilterCardsService } from '../../services/filter-cards.service';
   styleUrls: ['./filter.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent {
   filterW: string;
 
   sortCount: boolean;
@@ -32,10 +31,6 @@ export class FilterComponent implements OnInit {
     this.sortDate = true;
     this.iconDateContent = 'vertical_align_center';
     this.iconViewsCountContent = 'vertical_align_center';
-  }
-
-  ngOnInit(): void {
-    console.log('OnInit');
   }
 
   toggleIcon(key: keyof FilterComponent) {

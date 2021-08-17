@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   Input,
 } from '@angular/core';
@@ -12,10 +11,6 @@ import { ISearchItem } from '../../../models/search-item.model';
   styleUrls: ['./search-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchItemComponent implements OnInit {
+export class SearchItemComponent {
   @Input() item?: ISearchItem;
-
-  ngOnInit(): void {
-    console.log('OnInit');
-  }
 }
