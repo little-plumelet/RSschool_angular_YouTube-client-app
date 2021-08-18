@@ -29,13 +29,11 @@ export class SearchInputService {
     if (value.length >= 3) {
       this.inputValue$$.next(value);
       this.inputValue = value;
-      console.log('----', this.inputValue);
     }
   }
 
   getCards() {
-    console.log('----', this.inputValue);
-    this.youtubeService.getCards(this.inputValue);
+    if (this.inputValue) this.youtubeService.getCards(this.inputValue);
     return this.inputValue$;
   }
 }
