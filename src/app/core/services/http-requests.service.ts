@@ -11,11 +11,15 @@ export class HttpRequestsService {
   constructor(private http: HttpClient) {}
 
   getCards(value: string) {
-    const url = `https://www.googleapis.com/youtube/v3/search?key=AIzaSyDL17DSc1BgZQNbxc39PlfGXL4B1lSGBts&type=video&type=video&part=snippet&maxResults=10&q=${value}`;
+    // `https://www.googleapis.com/youtube/v3/search?key=AIzaSyDL17DSc1BgZQNbxc39PlfGXL4B1lSGBts&type=video&part=snippet&maxResults=10&q=${value}`;
+    const url = `&type=video&part=snippet&maxResults=10&q=${value}`;
     console.log('url =', value);
     return this.http.get<ISearchResponse>(url)
       .pipe(
-        map((response) => response.items),
+        map((response) => {
+          console.log(response);
+          return response.items;
+        }),
         catchError((error) => {
           console.log('Error is caught!', error);
           return throwError(error);

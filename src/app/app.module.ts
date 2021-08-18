@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { YoutubeModule } from './youtube/youtube.module';
+import { INTERCEPTOR_PROVIDERS } from './core/interceptors/providers';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { YoutubeModule } from './youtube/youtube.module';
     HttpClientModule,
   ],
   exports: [],
-  providers: [],
+  providers: [INTERCEPTOR_PROVIDERS],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
