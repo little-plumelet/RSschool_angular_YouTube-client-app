@@ -2,10 +2,8 @@ import {
   Component,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { Observable } from 'rxjs';
 import { YoutubeService } from '../../../services/youtube.service';
 import { FilterCardsService } from '../../../services/filter-cards.service';
-import { ISearchItem } from '../../../models/search-item.model';
 
 @Component({
   selector: 'app-search-results',
@@ -14,12 +12,8 @@ import { ISearchItem } from '../../../models/search-item.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchResultsComponent {
-  itemsArrObservable: Observable<ISearchItem[]>;
-
   constructor(
     public filterCardsService: FilterCardsService,
     public youtubeService: YoutubeService,
-  ) {
-    this.itemsArrObservable = this.youtubeService.getCards();
-  }
+  ) {}
 }

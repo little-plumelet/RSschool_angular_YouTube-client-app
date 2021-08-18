@@ -4,8 +4,9 @@ import {
   Subject,
   BehaviorSubject,
 } from 'rxjs';
+import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import { ISearchItem } from '../models/search-item.model';
-import { items } from '../components/search/search-results/temporary-constants';
+// import { items } from '../components/search/search-results/temporary-constants';
 
 @Injectable({
   providedIn: 'root',
@@ -13,27 +14,31 @@ import { items } from '../components/search/search-results/temporary-constants';
 export class YoutubeService {
   cardsArr: ISearchItem[];
 
+  cardsArrObservable$: Observable<ISearchItem[]>;
+
   cardsArrChange: Subject<ISearchItem[]> = new BehaviorSubject<ISearchItem[]>([] as ISearchItem[]);
 
   card: ISearchItem | undefined;
 
-  constructor() {
+  constructor(private httpRequests: HttpRequestsService) {
     this.cardsArr = [];
 
     this.card = {} as ISearchItem;
 
-    this.cardsArrChange.subscribe((arr) => {
-      this.cardsArr = arr;
-    });
+    this.cardsArrObservable$ = this.cardsArrChange.asObservable();
   }
 
   createCards(): void {
-    this.cardsArr = Array.from(items);
+    // this.cardsArr = Array.from(items);
     this.cardsArrChange.next(this.cardsArr);
   }
 
-  getCards(): Observable<ISearchItem[]> {
-    return this.cardsArrChange.asObservable();
+  getCards(value: string) {
+    this.httpRequests.getCards(value).subscribe((cards) => {
+      this.cardsArrChange.next(cards);
+      this.cardsArr = cards;
+      console.log('11111', this.cardsArr);
+    });
   }
 
   sortViewsCount(sort: boolean) {
@@ -83,7 +88,8 @@ export class YoutubeService {
   }
 
   getCardById(id: string): ISearchItem | undefined {
-    this.card = this.cardsArr.find((el) => el.id === id);
+    this.card = this.cardsArr.find((el) => el.id.videoId === id);
+    console.log('ffff', this.card);
     return this.card;
   }
 }

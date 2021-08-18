@@ -2,8 +2,7 @@ import {
   Component,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { ISearchItem } from '../../../../youtube/models/search-item.model';
-import { YoutubeService } from '../../../../youtube/services/youtube.service';
+import { SearchInputService } from 'src/app/core/services/search-input.service';
 import { FilterCardsService } from '../../../../youtube/services/filter-cards.service';
 
 @Component({
@@ -13,18 +12,8 @@ import { FilterCardsService } from '../../../../youtube/services/filter-cards.se
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchFormComponent {
-  searchInput;
-
-  searchResultArr: ISearchItem[];
-
-  constructor(public youtubeService: YoutubeService,
-    public filterCardsService: FilterCardsService) {
-    this.searchInput = '';
-    this.searchResultArr = [];
-  }
-
-  getResult() {
-    this.youtubeService.createCards(); // временный код - здесь мы должны получить результат поиска
-    this.searchInput = '';
-  }
+  constructor(
+    public filterCardsService: FilterCardsService,
+    public inputService: SearchInputService,
+  ) {}
 }

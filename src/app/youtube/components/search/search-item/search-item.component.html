@@ -1,11 +1,11 @@
 <mat-card *ngIf="item" class="example-card">
   <img mat-card-image [src]="item.snippet.thumbnails.high.url" alt="Photo of the card">
   <mat-card-content>
-    <app-statistics [item]="item"></app-statistics>
+    <!-- <app-statistics [item]="item"></app-statistics> -->
     <mat-card-title>{{ item.snippet.title }}</mat-card-title>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-stroked-button [routerLink]="['/main', item.id]">
+    <button mat-stroked-button [routerLink]="['/main', item.id.videoId]">
       More...
     </button>
   </mat-card-actions>

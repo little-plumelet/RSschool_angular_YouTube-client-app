@@ -1,15 +1,9 @@
+import { ItemStatistics } from './item-statistics';
+
 interface IThumbnail {
   url: string;
   width: number;
   height: number;
-}
-
-interface IStatistics {
-  viewCount: number;
-  likeCount: number;
-  dislikeCount: number;
-  favoriteCount: number;
-  commentCount: number;
 }
 
 interface ISnippet {
@@ -36,10 +30,17 @@ interface ISnippet {
   defaultAudioLanguage: string;
 }
 
+interface IId {
+  kind: string;
+  videoId: string;
+  channelId: string;
+  playlistId: string;
+}
+
 export interface ISearchItem {
   kind: string;
   etag: string;
-  id: string;
+  id: IId;
   snippet: ISnippet;
-  statistics: IStatistics;
+  statistics: ItemStatistics;
 }
