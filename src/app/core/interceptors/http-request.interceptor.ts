@@ -14,13 +14,14 @@ export class HttpRequestInterceptor implements HttpInterceptor {
   apiToken: string;
 
   constructor() {
-    this.baseUrl = 'https://www.googleapis.com/youtube/v3/search?';
+    this.baseUrl = 'https://www.googleapis.com/youtube/v3/';
     this.apiToken = 'AIzaSyDL17DSc1BgZQNbxc39PlfGXL4B1lSGBts';
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    const re = /^(\w+\?)/g;
     const reqCloned = request.clone({
-      url: `${this.baseUrl}key=${this.apiToken}${request.url}`,
+      url: `${this.baseUrl}${request.url.match(re)}key=${this.apiToken}${request.url.match(/[^?]*$/)}`,
     });
     return next.handle(reqCloned);
   }

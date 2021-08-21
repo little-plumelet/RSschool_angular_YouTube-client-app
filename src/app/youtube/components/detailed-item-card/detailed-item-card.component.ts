@@ -14,7 +14,7 @@ import { YoutubeService } from '../../services/youtube.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailedItemCardComponent implements OnInit {
-  item: ISearchItem | undefined;
+  item: ISearchItem;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,8 +26,13 @@ export class DetailedItemCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.item = this.youtubeService.getCardById(params.id);
-      if (!this.item) this.router.navigate(['/main/error']);
+      this.youtubeService.getCardById(params.id);
+      this.youtubeService.cardObservable$.subscribe(
+        (res) => {
+          if (res === undefined) this.router.navigate(['/main/error']);
+          else if (Object.keys(res).length) this.item = res;
+        },
+      );
     });
   }
 }
