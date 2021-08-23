@@ -48,4 +48,12 @@ export class FilterComponent {
     this.iconViewsCountContent = 'vertical_align_center';
     this.iconDateContent = 'vertical_align_center';
   }
+
+  sortByDate() {
+    this.youtubeService.sortDate(this.sortDate = !this.sortDate);
+  }
+
+  sortByViewsCount() {
+    this.youtubeService.sortViewsCount(this.sortCount = !this.sortCount);
+  }
 }

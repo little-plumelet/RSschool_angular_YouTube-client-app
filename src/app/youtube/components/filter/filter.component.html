@@ -3,7 +3,7 @@
   <button
     class="filter-panel-item"
     mat-stroked-button color="primary"
-    (click)="youtubeService.sortDate(sortDate = !sortDate)"
+    (click)="sortByDate()"
     (click)="toggleIcon('iconDateContent')"
   >
   <span>date</span>
@@ -12,7 +12,7 @@
   <button
     class="filter-panel-item"
     mat-stroked-button color="primary"
-    (click)="youtubeService.sortViewsCount(sortCount = !sortCount)"
+    (click)="sortByViewsCount()"
     (click)="toggleIcon('iconViewsCountContent')"
   >
   <span>views count</span>
