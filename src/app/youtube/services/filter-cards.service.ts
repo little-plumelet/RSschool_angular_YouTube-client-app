@@ -10,13 +10,13 @@ export class FilterCardsService {
   filterWordChange$ = new BehaviorSubject<string>('');
 
   constructor() {
-    this.filterWordChange$.subscribe((fw) => {
-      this.filterWord = fw;
+    this.filterWordChange$.subscribe((value) => {
+      this.filterWord = value;
     });
   }
 
-  changeFilterWord(fw: string) {
-    this.filterWord = fw;
+  changeFilterWord(value: string) {
+    this.filterWord = value;
   }
 
   getFilterWord():Observable<string> {
