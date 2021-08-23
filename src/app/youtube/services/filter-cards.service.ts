@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,10 +7,10 @@ import { BehaviorSubject, Subject, Observable } from 'rxjs';
 export class FilterCardsService {
   filterWord = '';
 
-  filterWordChange: Subject<string> = new BehaviorSubject<string>('');
+  filterWordChange$ = new BehaviorSubject<string>('');
 
   constructor() {
-    this.filterWordChange.subscribe((fw) => {
+    this.filterWordChange$.subscribe((fw) => {
       this.filterWord = fw;
     });
   }
@@ -20,6 +20,6 @@ export class FilterCardsService {
   }
 
   getFilterWord():Observable<string> {
-    return this.filterWordChange.asObservable();
+    return this.filterWordChange$.asObservable();
   }
 }
