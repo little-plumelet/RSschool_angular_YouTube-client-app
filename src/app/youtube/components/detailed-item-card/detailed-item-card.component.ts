@@ -14,15 +14,13 @@ import { YoutubeService } from '../../services/youtube.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailedItemCardComponent implements OnInit {
-  item: ISearchItem;
+  item = {} as ISearchItem;
 
   constructor(
     private route: ActivatedRoute,
     public youtubeService: YoutubeService,
     private router: Router,
-  ) {
-    this.item = {} as ISearchItem;
-  }
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {

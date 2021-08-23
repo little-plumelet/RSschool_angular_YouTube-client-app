@@ -11,7 +11,7 @@ import { ISearchItem } from '../models/search-item.model';
   providedIn: 'root',
 })
 export class YoutubeService {
-  cardsArr: ISearchItem[];
+  cardsArr: ISearchItem[] = [];
 
   cardsArrObservable$: Observable<ISearchItem[]>;
 
@@ -26,10 +26,6 @@ export class YoutubeService {
   card: ISearchItem | undefined;
 
   constructor(private httpRequests: HttpRequestsService) {
-    this.card = {} as ISearchItem;
-
-    this.cardsArr = [];
-
     this.card = {} as ISearchItem;
 
     this.cardsArrObservable$ = this.cardsArrChange.asObservable();

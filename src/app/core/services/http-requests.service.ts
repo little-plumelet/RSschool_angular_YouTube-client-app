@@ -8,14 +8,11 @@ import { ISearchResponse } from 'src/app/youtube/models/search-response.model';
   providedIn: 'root',
 })
 export class HttpRequestsService {
-  url: string;
+  url = '';
 
-  smallUrl: string;
+  smallUrl = '';
 
-  constructor(private http: HttpClient) {
-    this.url = '';
-    this.smallUrl = '';
-  }
+  constructor(private http: HttpClient) {}
 
   getCards(value: string) {
     // `https://www.googleapis.com/youtube/v3/search?key=AIzaSyDL17DSc1BgZQNbxc39PlfGXL4B1lSGBts&type=video&part=snippet&maxResults=10&q=${value}`;

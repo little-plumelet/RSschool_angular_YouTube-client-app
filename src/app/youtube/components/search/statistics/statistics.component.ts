@@ -12,9 +12,5 @@ import { ISearchItem } from 'src/app/youtube/models/search-item.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatisticsComponent {
-  @Input() item: ISearchItem;
-
-  constructor() {
-    this.item = {} as ISearchItem;
-  }
+  @Input() item = {} as ISearchItem;
 }

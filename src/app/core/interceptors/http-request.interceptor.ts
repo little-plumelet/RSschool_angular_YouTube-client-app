@@ -9,14 +9,9 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
-  baseUrl: string;
+  baseUrl = 'https://www.googleapis.com/youtube/v3/';
 
-  apiToken: string;
-
-  constructor() {
-    this.baseUrl = 'https://www.googleapis.com/youtube/v3/';
-    this.apiToken = 'AIzaSyDL17DSc1BgZQNbxc39PlfGXL4B1lSGBts';
-  }
+  apiToken = 'AIzaSyDL17DSc1BgZQNbxc39PlfGXL4B1lSGBts';
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const re = /^(\w+\?)/g;

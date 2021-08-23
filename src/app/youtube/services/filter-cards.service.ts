@@ -5,13 +5,11 @@ import { BehaviorSubject, Subject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class FilterCardsService {
-  filterWord: string;
+  filterWord = '';
 
   filterWordChange: Subject<string> = new BehaviorSubject<string>('');
 
   constructor() {
-    this.filterWord = '';
-
     this.filterWordChange.subscribe((fw) => {
       this.filterWord = fw;
     });

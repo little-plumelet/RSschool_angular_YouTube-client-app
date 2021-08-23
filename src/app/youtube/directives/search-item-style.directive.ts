@@ -12,11 +12,9 @@ import {
 export class SearchItemStyleDirective implements OnInit {
   @Input() dateStr: string = '';
 
-  diff: number;
+  diff = 0;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    this.diff = 0;
-  }
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit() {
     const currentDate = new Date();

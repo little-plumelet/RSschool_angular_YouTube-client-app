@@ -12,26 +12,20 @@ import { FilterCardsService } from '../../services/filter-cards.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterComponent {
-  filterW: string;
+  filterW = '';
 
-  sortCount: boolean;
+  sortCount = true;
 
-  sortDate: boolean;
+  sortDate = true;
 
-  iconDateContent: string;
+  iconDateContent = 'vertical_align_center';
 
-  iconViewsCountContent: string;
+  iconViewsCountContent = 'vertical_align_center';
 
   constructor(
     public filterCardsService: FilterCardsService,
     public youtubeService: YoutubeService,
-  ) {
-    this.filterW = '';
-    this.sortCount = true;
-    this.sortDate = true;
-    this.iconDateContent = 'vertical_align_center';
-    this.iconViewsCountContent = 'vertical_align_center';
-  }
+  ) {}
 
   toggleIcon(key: keyof FilterComponent) {
     if (this[key] === 'vertical_align_center') (this[key] as string) = 'arrow_downward';
