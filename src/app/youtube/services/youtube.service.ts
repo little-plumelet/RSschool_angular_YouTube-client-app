@@ -7,6 +7,8 @@ import {
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import { ISearchItem } from '../models/search-item.model';
 
+const MILLISECONDS_IN_DAY = 1000 * 60 * 60 * 24;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -63,25 +65,16 @@ export class YoutubeService {
   }
 
   sortDate(sort: boolean) {
-    if (sort) {
-      this.cardsArr.sort((a, b) => {
-        const el1 = new Date(a.snippet.publishedAt.replace('/(T[A-Za-z0-9_-]*/g', ''));
-        const el2 = new Date(b.snippet.publishedAt.replace('/(T[A-Za-z0-9_-]*/g', ''));
-        if (Math.floor((Date.UTC(el1.getFullYear(), el1.getMonth(), el1.getDate())
-            - Date.UTC(el2.getFullYear(), el2.getMonth(), el2.getDate()))
-            / (1000 * 60 * 60 * 24)) > 0) return -1;
-        return 1;
-      });
-    } else {
-      this.cardsArr.sort((a, b) => {
-        const el1 = new Date(a.snippet.publishedAt.replace('/(T[A-Za-z0-9_-]*/g', ''));
-        const el2 = new Date(b.snippet.publishedAt.replace('/(T[A-Za-z0-9_-]*/g', ''));
-        if (Math.floor((Date.UTC(el1.getFullYear(), el1.getMonth(), el1.getDate())
-            - Date.UTC(el2.getFullYear(), el2.getMonth(), el2.getDate()))
-            / (1000 * 60 * 60 * 24)) > 0) return 1;
-        return -1;
-      });
-    }
+    this.cardsArr.sort((a, b) => {
+      const el1 = new Date(a.snippet.publishedAt);
+      const el2 = new Date(b.snippet.publishedAt);
+      if (Math.floor((Date.UTC(el1.getFullYear(), el1.getMonth(), el1.getDate())
+          - Date.UTC(el2.getFullYear(), el2.getMonth(), el2.getDate()))
+          / MILLISECONDS_IN_DAY) > 0) {
+        return (sort ? -1 : 1);
+      }
+      return sort ? 1 : -1;
+    });
 
     this.cardsArr = Array.from(this.cardsArr);
     this.cardsArrChange.next(this.cardsArr);
