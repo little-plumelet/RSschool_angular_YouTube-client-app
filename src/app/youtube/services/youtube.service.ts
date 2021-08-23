@@ -17,21 +17,16 @@ export class YoutubeService {
 
   cardsArrObservable$: Observable<ISearchItem[]>;
 
-  private cardsArrChange: Subject<ISearchItem[]> = new BehaviorSubject<ISearchItem[]>(
-    [] as ISearchItem[],
-  );
+  private cardsArrChange = new BehaviorSubject<ISearchItem[]>([]);
 
   cardObservable$: Observable<ISearchItem>;
 
-  private cardChange: Subject<ISearchItem> = new Subject<ISearchItem>();
+  private cardChange = new Subject<ISearchItem>();
 
-  card: ISearchItem | undefined;
+  card: ISearchItem | undefined = {} as ISearchItem;
 
   constructor(private httpRequests: HttpRequestsService) {
-    this.card = {} as ISearchItem;
-
     this.cardsArrObservable$ = this.cardsArrChange.asObservable();
-
     this.cardObservable$ = this.cardChange.asObservable();
   }
 
@@ -49,17 +44,11 @@ export class YoutubeService {
   }
 
   sortViewsCount(sort: boolean) {
-    if (sort) {
-      this.cardsArr.sort((a, b): number => {
-        if (a.statistics.viewCount > b.statistics.viewCount) return 1;
-        return -1;
-      });
-    } else {
-      this.cardsArr.sort((a, b): number => {
-        if (a.statistics.viewCount < b.statistics.viewCount) return 1;
-        return -1;
-      });
-    }
+    this.cardsArr.sort((a, b): number => {
+      if (a.statistics.viewCount > b.statistics.viewCount) return sort ? 1 : -1;
+      return -1;
+    });
+
     this.cardsArr = Array.from(this.cardsArr);
     this.cardsArrChange.next(this.cardsArr);
   }
