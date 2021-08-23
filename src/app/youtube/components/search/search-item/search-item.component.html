@@ -1,5 +1,5 @@
 <mat-card *ngIf="item" class="example-card">
-  <img mat-card-image [src]="item.snippet.thumbnails.high.url" alt="Photo of the card">
+  <img mat-card-image [src]="item.snippet.thumbnails.high.url" alt={{ item.snippet.title }}>
   <mat-card-content>
     <app-statistics [item]="item"></app-statistics>
     <mat-card-title>{{ item.snippet.title }}</mat-card-title>
