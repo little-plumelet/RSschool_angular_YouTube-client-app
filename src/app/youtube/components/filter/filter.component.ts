@@ -28,11 +28,20 @@ export class FilterComponent {
   ) {}
 
   toggleIcon(key: keyof FilterComponent) {
-    if (this[key] === 'vertical_align_center') (this[key] as string) = 'arrow_downward';
-    else if (this[key] === 'arrow_downward') (this[key] as string) = 'arrow_upward';
-    else (this[key] as string) = 'arrow_downward';
+    switch (this[key]) {
+      case 'vertical_align_center':
+        (this[key] as string) = 'arrow_downward';
+        break;
+      case 'arrow_downward':
+        (this[key] as string) = 'arrow_upward';
+        break;
+      default:
+        (this[key] as string) = 'arrow_downward';
+        break;
+    }
+
     if (key === 'iconDateContent') this.iconViewsCountContent = 'vertical_align_center';
-    else if (key === 'iconViewsCountContent') this.iconDateContent = 'vertical_align_center';
+    else this.iconDateContent = 'vertical_align_center';
   }
 
   clearIcons() {
