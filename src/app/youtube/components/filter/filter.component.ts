@@ -12,7 +12,7 @@ import { FilterCardsService } from '../../services/filter-cards.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterComponent {
-  filterW = '';
+  filterWord = '';
 
   sortCount = true;
 
