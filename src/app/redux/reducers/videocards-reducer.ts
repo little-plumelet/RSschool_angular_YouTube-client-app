@@ -8,6 +8,6 @@ const initialState: AppState = {
 
 export const videoCardsReducer = createReducer(initialState,
   on(videCardsActions.getVideoCards, (state) => {
-    console.log('!!!!state', state);
+    console.log('state', state);
     return { ...state };
   }));

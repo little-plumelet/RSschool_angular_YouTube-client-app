@@ -18,5 +18,6 @@ export class SearchResultsComponent {
     public filterCardsService: FilterCardsService,
     public youtubeService: YoutubeService,
     private store: Store<AppState>,
-  ) { console.log(this.store); }
+  ) { // console.log(this.store);
+  }
 }
