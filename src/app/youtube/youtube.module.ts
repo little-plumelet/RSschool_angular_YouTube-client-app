@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../shared/shared.module';
 import { SearchItemComponent } from './components/search/search-item/search-item.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
@@ -13,6 +14,7 @@ import { DetailedItemCardComponent } from './components/detailed-item-card/detai
 import { StatisticsComponent } from './components/search/statistics/statistics.component';
 import { AuthGuard } from '../core/guards/auth.guard';
 import { NotFoundComponent } from '../core/pages/not-found/not-found.component';
+import { videoCardsReducer } from '../redux/reducers/videocards-reducer';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,9 @@ import { NotFoundComponent } from '../core/pages/not-found/not-found.component';
       { path: 'main/:id', component: DetailedPageComponent, pathMatch: 'full' },
 
     ]),
+    StoreModule.forFeature(
+      'videoCardsState', videoCardsReducer,
+    ),
   ],
   exports: [RouterModule],
 })
