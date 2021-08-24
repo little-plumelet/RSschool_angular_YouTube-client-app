@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {
   BehaviorSubject,
   Observable,
-  Subject,
   Subscription,
 } from 'rxjs';
 
@@ -55,7 +54,7 @@ export class LoginService {
     this.userName$.next(this.name);
   }
 
-  getName():Subject<string> {
+  getName():BehaviorSubject<string> {
     if (localStorage.getItem('name')) this.name = localStorage.getItem('name') as string;
     else this.name = 'Your name';
     this.userName$.next(this.name);
