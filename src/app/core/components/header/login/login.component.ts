@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { Subject } from 'rxjs';
-import { LoginService } from 'src/app/auth/services/login.service';
+import { LoginService } from 'src/app/auth/auth.module';
 
 @Component({
   selector: 'app-login',

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -11,6 +10,7 @@ import { LoginPageComponent } from '../auth/pages/login-page/login-page.componen
 import { FilterComponent } from '../youtube/components/filter/filter.component';
 import { HeaderComponent } from './components/header/header/header.component';
 import { SharedModule } from '../shared/shared.module';
+import { AuthModule } from '../auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -24,8 +24,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     FormsModule,
-    CommonModule,
     SharedModule,
+    AuthModule,
     RouterModule.forChild([
       { path: '', component: LoginPageComponent },
     ]),
