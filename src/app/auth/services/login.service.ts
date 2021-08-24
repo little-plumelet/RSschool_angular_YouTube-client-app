@@ -6,6 +6,8 @@ import {
   Subscription,
 } from 'rxjs';
 
+const DEFAULT_USERNAME = 'Your name';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +18,7 @@ export class LoginService {
 
   isLogged: boolean;
 
-  stream$: BehaviorSubject<string> = new BehaviorSubject<string>('Your name');
+  userName$: BehaviorSubject<string> = new BehaviorSubject<string>('Your name');
 
   isLoggedStream$: Observable<boolean> = new Observable<boolean>((observer) => {
     observer.next(this.isLogged);
@@ -25,10 +27,10 @@ export class LoginService {
   sub: Subscription;
 
   constructor() {
-    this.name = 'Your name';
+    this.name = DEFAULT_USERNAME;
     this.password = '';
     this.isLogged = Boolean(localStorage.getItem('name'));
-    this.sub = this.stream$.subscribe((value) => {
+    this.sub = this.userName$.subscribe((value) => {
       this.name = value;
     });
 
@@ -41,7 +43,7 @@ export class LoginService {
     localStorage.setItem('name', this.name);
     localStorage.setItem('password', this.password);
     this.isLogged = true;
-    this.stream$.next(this.name);
+    this.userName$.next(this.name);
   }
 
   clearDateInLocalStorage() {
@@ -50,13 +52,13 @@ export class LoginService {
     localStorage.removeItem('name');
     localStorage.removeItem('password');
     this.isLogged = false;
-    this.stream$.next(this.name);
+    this.userName$.next(this.name);
   }
 
   getName():Subject<string> {
     if (localStorage.getItem('name')) this.name = localStorage.getItem('name') as string;
     else this.name = 'Your name';
-    this.stream$.next(this.name);
-    return this.stream$;
+    this.userName$.next(this.name);
+    return this.userName$;
   }
 }
