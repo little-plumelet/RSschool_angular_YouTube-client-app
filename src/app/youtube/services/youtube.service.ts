@@ -35,11 +35,10 @@ export class YoutubeService {
   }
 
   getCards(value: string) {
-    this.httpRequests.getCards(value).subscribe((cardsObs) => {
-      cardsObs.subscribe((cards) => {
-        this.cardsArrChange.next(cards);
-        this.cardsArr = cards;
-      });
+    // return this.httpRequests.getCards(value);
+    this.httpRequests.getCards(value).subscribe((cards) => {
+      this.cardsArrChange.next(cards);
+      this.cardsArr = cards;
     });
   }
 

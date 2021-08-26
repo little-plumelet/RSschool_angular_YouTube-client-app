@@ -10,4 +10,8 @@ export const videoCardsReducer = createReducer(initialState,
   on(videCardsActions.getVideoCards, (state) => {
     console.log('state', state);
     return { ...state };
+  }),
+  on(videCardsActions.getVideoCardsSuccessful, (state, { videoCardsArray }) => {
+    console.log('stateSuccess', state);
+    return { ...state, videoCardsArray };
   }));

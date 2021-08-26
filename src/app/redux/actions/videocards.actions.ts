@@ -12,7 +12,7 @@ export const getVideoCardsSuccessful = createAction(
 
 export const getVideoCardsFailed = createAction(
   '[VIDEOCARDS EFFECT] FETCHED CARDS FAILED',
-  props<{ ERROR: Error }>(),
+  props<{ error: Error }>(),
 );
 
 export const getVideoCardById = createAction(

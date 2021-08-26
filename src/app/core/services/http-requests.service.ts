@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { ISearchResponse } from 'src/app/youtube/models/search-response.model';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class HttpRequestsService {
     const idArr: string[] = [];
     return this.http.get<ISearchResponse>(this.url)
       .pipe(
-        map((response) => {
+        switchMap((response) => {
           response.items.forEach((el) => idArr.push(el.id.videoId));
           this.smallUrl = `videos?&id=${[...idArr]}&part=snippet,statistics`;
           return this.http.get<ISearchResponse>(this.smallUrl)
