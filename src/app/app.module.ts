@@ -12,6 +12,7 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { YoutubeModule } from './youtube/youtube.module';
 import { INTERCEPTOR_PROVIDERS } from './core/interceptors/providers';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { INTERCEPTOR_PROVIDERS } from './core/interceptors/providers';
     BrowserAnimationsModule,
     CoreModule,
     YoutubeModule,
+    AdminModule,
     SharedModule,
     AppRoutingModule,
     HttpClientModule,

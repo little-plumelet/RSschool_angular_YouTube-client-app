@@ -11,6 +11,7 @@ import { FilterComponent } from '../youtube/components/filter/filter.component';
 import { HeaderComponent } from './components/header/header/header.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuthModule } from '../auth/auth.module';
+import { AdminPageComponent } from '../admin/pages/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AuthModule } from '../auth/auth.module';
     AuthModule,
     RouterModule.forChild([
       { path: '', component: LoginPageComponent },
+      { path: 'admin', component: AdminPageComponent },
     ]),
   ],
   exports: [

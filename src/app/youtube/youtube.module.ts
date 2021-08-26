@@ -17,6 +17,7 @@ import { AuthGuard } from '../core/guards/auth.guard';
 import { NotFoundComponent } from '../core/pages/not-found/not-found.component';
 import { videoCardsReducer } from '../redux/reducers/videocards-reducer';
 import { VideoCardsEffects } from '../redux/effects/videocards-effects';
+import { AdminModule } from '../admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { VideoCardsEffects } from '../redux/effects/videocards-effects';
   imports: [
     CommonModule,
     SharedModule,
+    AdminModule,
     FormsModule,
     RouterModule.forChild([
       {

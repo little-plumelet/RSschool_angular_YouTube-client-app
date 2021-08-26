@@ -1,17 +1,29 @@
 import { createReducer, on } from '@ngrx/store';
 import * as videCardsActions from '../actions/videocards.actions';
-import { AppState } from '../state.models';
+import { initialState } from '../state.models';
 
-const initialState: AppState = {
-  videoCardsState: { videoCardsArray: [] },
-};
-
-export const videoCardsReducer = createReducer(initialState,
-  on(videCardsActions.getVideoCards, (state) => {
-    console.log('state', state);
-    return { ...state };
+export const videoCardsReducer = createReducer(initialState.videoCardsState,
+  on(videCardsActions.getVideoCardsFailed, (state, { error }) => {
+    console.log('&&&&&', error);
+    const result = {
+      ...state,
+      error,
+      loading: false,
+      loaded: false,
+    };
+    return result;
   }),
   on(videCardsActions.getVideoCardsSuccessful, (state, { videoCardsArray }) => {
+    const result = {
+      ...state,
+      videoCardsArray,
+      loading: false,
+      loaded: true,
+    };
+    return result;
+  }),
+  on(videCardsActions.getVideoCards, (state) => {
     console.log('stateSuccess', state);
-    return { ...state, videoCardsArray };
+    const result = { ...state, loading: true };
+    return result;
   }));
