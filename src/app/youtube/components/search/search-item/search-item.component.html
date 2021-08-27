@@ -1,0 +1,15 @@
+<mat-card *ngIf="item" class="example-card">
+  <img mat-card-image [src]="item.snippet.thumbnails.high.url" alt="Photo of the card">
+  <mat-card-content>
+    <app-statistics [item]="item"></app-statistics>
+    <mat-card-title>{{ item.snippet.title }}</mat-card-title>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-stroked-button [routerLink]="['/main', item.id]">
+      More...
+    </button>
+  </mat-card-actions>
+  <mat-card-footer class="card-footer">
+    <div class="date-indicator" appSearchItemStyle dateStr="{{ item.snippet.publishedAt }}"></div>
+  </mat-card-footer>
+</mat-card>

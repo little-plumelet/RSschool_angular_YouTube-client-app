@@ -1,0 +1,6 @@
+<app-search-item
+  *ngFor="let item of (itemsArrObservable | async | filterCards: filterCardsService.filterWord)"
+    [item]="item"
+>
+</app-search-item>
+<!-- <app-detailed-item-card></app-detailed-item-card> -->

@@ -1,0 +1,15 @@
+.card-statistics {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  &_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .card-icon {
+    margin-right: 5px;
+  }
+}

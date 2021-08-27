@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { ISearchItem } from './search/search-item.model';
-import { CardsService } from './services/cards.service';
-// import { items } from './search/search-results/temporary-constants';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +6,4 @@ import { CardsService } from './services/cards.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'YouTube-client-app';
-
-  items: ISearchItem[] = [];
-
-  constructor(public cardsService: CardsService) {}
-  // работа через input/output - позже заменить на сервисы или на подписку
-  updateSearchResult2(searchResultArrH: ISearchItem[]) {
-    this.items = searchResultArrH;
-  }
 }
