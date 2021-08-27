@@ -4,7 +4,6 @@ import { initialState } from '../state.models';
 
 export const videoCardsReducer = createReducer(initialState.videoCardsState,
   on(videCardsActions.getVideoCardsFailed, (state, { error }) => {
-    console.log('&&&&&', error);
     const result = {
       ...state,
       error,
@@ -23,7 +22,6 @@ export const videoCardsReducer = createReducer(initialState.videoCardsState,
     return result;
   }),
   on(videCardsActions.getVideoCards, (state) => {
-    console.log('stateSuccess', state);
     const result = { ...state, loading: true };
     return result;
   }));

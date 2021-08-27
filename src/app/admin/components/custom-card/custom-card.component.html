@@ -1,1 +1,14 @@
-<p>custom-card works!</p>
+<p>custom-card works!</p><mat-card *ngIf="card" class="example-card">
+  <img mat-card-image [src]="(card | async)?.imageLink" alt="">
+  <mat-card-content>
+    <mat-card-title>{{ (card | async)?.title }}</mat-card-title>
+  </mat-card-content>
+  <mat-card-actions>
+    <!-- <button mat-stroked-button [routerLink]="['/main', item.id]">
+      More...
+    </button> -->
+  </mat-card-actions>
+  <mat-card-footer class="card-footer">
+    <div class="date-indicator">{{  (card | async)?.creationDate }}</div>
+  </mat-card-footer>
+</mat-card>

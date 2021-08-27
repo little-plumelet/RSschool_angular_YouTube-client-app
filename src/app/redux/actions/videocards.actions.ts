@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { ISearchItem } from 'src/app/youtube/models/search-item.model';
 
 export const getVideoCards = createAction(
-  '[VIDEOCASDS PAGE] GET VIDEOS',
+  '[VIDEOCARDS PAGE] GET VIDEOS',
 );
 
 export const getVideoCardsSuccessful = createAction(

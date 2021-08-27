@@ -2,7 +2,8 @@ import { ICustomCard } from '../admin/models/custom-card';
 import { ISearchItem } from '../youtube/models/search-item.model';
 
 export interface ICustomCardsState {
-  customCardsArray: ICustomCard[];
+  // customCardsArray: ICustomCard[];
+  customCard: ICustomCard;
 }
 
 export interface IVideoCardsState {
@@ -24,5 +25,6 @@ export const initialState: AppState = {
     loaded: false,
     error: null,
   },
-  customCardsState: { customCardsArray: [] },
+  // customCardsState: { customCardsArray: [] },
+  customCardsState: { customCard: {} as ICustomCard },
 };

@@ -8,6 +8,7 @@
     class="title-input"
     type="text"
     required
+    [(ngModel)]="title"
   >
   <label class="form-create-card-label" for="description">Description:</label>
   <input
@@ -17,7 +18,7 @@
     class="description-input"
     type="text"
     required
-
+    [(ngModel)]="description"
   >
   <label class="form-create-card-label" for="image">Image:</label>
   <input
@@ -27,7 +28,7 @@
     class="image-input"
     type="text"
     required
-
+    [(ngModel)]="imageLink"
   >
   <label class="form-create-card-label" for="video-link">Video link:</label>
   <input
@@ -37,12 +38,16 @@
     class="video-link-input"
     type="text"
     required
-
+    [(ngModel)]="videoLink"
   >
   <button
-    class="create-btn"
+    class="create-btn disabled"
+    id="create-card-btn"
+    type="submit"
     mat-raised-button
     color="primary"
+    (click)="createCustomCard()"
+    [routerLink]="['/main']"
   >
   CREATE
 </button>
