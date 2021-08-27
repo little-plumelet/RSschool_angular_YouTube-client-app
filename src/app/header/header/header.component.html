@@ -1,1 +1,11 @@
-<p>header works!</p>
+<header class="header">
+  <div class="header-container">
+    <app-logo></app-logo>
+    <!-- работа через input/output - позже заменить на сервисы или на подписку -->
+    <app-search-form
+
+    ></app-search-form>
+    <app-login-form></app-login-form>
+  </div>
+  <app-filter *ngIf='showSettingsService.showFilterPanel'></app-filter>
+</header>

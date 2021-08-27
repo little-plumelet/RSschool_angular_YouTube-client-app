@@ -1,1 +1,30 @@
-<p>search-item works!</p>
+<mat-card *ngIf="item" class="example-card">
+  <img mat-card-image [src]="item.snippet.thumbnails.high.url" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <div class="card-statistics">
+      <div class="card-statistics_item">
+        <mat-icon class="card-icon" aria-hidden="false" aria-label="view-count">visibility</mat-icon>
+        <p>{{ item.statistics.viewCount }}</p>
+      </div>
+      <div class="card-statistics_item">
+        <mat-icon class="card-icon" aria-hidden="false" aria-label="Example home icon">favorite</mat-icon>
+        <p>{{ item.statistics.likeCount }}</p>
+      </div>
+      <div class="card-statistics_item">
+        <mat-icon class="card-icon" aria-hidden="false" aria-label="Example home icon">thumb_down</mat-icon>
+        <p>{{ item.statistics.dislikeCount }}</p>
+      </div>
+      <div class="card-statistics_item">
+        <mat-icon class="card-icon" aria-hidden="false" aria-label="Example home icon">speaker_notes</mat-icon>
+        <p>{{ item.statistics.commentCount }}</p>
+      </div>
+    </div>
+    <mat-card-title>{{ item.snippet.title }}</mat-card-title>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>More...</button>
+  </mat-card-actions>
+  <mat-card-footer class="card-footer">
+    <div appSearchItemStyle class="date-indicator" days="{{ diff }}"></div>
+  </mat-card-footer>
+</mat-card>

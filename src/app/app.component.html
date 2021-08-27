@@ -1,2 +1,4 @@
 <app-header></app-header>
-<app-search-results></app-search-results>
+<app-search-results
+*ngIf="cardsService.cardsArr.length"
+></app-search-results>

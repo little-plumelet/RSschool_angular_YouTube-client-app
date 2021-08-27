@@ -28,13 +28,14 @@ export interface ISearchItem {
       title: string,
       description: string,
     },
+    defaultLanguage?: string,
     defaultAudioLanguage: string,
   },
   statistics: {
     viewCount: number,
-    ikeCount: number,
-    islikeCount: number,
-    avoriteCount: number,
-    ommentCount: number
+    likeCount: number,
+    dislikeCount: number,
+    favoriteCount: number,
+    commentCount: number
   }
 }
