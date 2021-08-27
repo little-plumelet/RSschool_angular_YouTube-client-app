@@ -18,7 +18,6 @@ import { NotFoundComponent } from '../core/pages/not-found/not-found.component';
 import { videoCardsReducer } from '../redux/reducers/videocards-reducer';
 import { VideoCardsEffects } from '../redux/effects/videocards-effects';
 import { AdminModule } from '../admin/admin.module';
-import { CustomCardComponent } from '../admin/components/custom-card/custom-card.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { CustomCardComponent } from '../admin/components/custom-card/custom-card
     DetailedPageComponent,
     DetailedItemCardComponent,
     StatisticsComponent,
-    CustomCardComponent,
   ],
   imports: [
     CommonModule,

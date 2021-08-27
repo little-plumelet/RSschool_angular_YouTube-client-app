@@ -1,0 +1,6 @@
+<span  class="custom-cards-list-title" *ngIf="(customCardsArray | async)?.length">CUSTOM CARDS:</span>
+<app-custom-card
+    *ngFor="let customCard of (customCardsArray | async)"
+      [customCard]="customCard"
+  >
+</app-custom-card>

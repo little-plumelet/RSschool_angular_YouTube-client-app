@@ -35,7 +35,6 @@ export class YoutubeService {
   }
 
   getCards(value: string) {
-    // return this.httpRequests.getCards(value);
     this.httpRequests.getCards(value).subscribe((cards) => {
       this.cardsArrChange.next(cards);
       this.cardsArr = cards;
@@ -43,7 +42,7 @@ export class YoutubeService {
   }
 
   sortViewsCount(sort: boolean) {
-    this.cardsArr.sort((a, b): number => {
+    this.cardsArr = this.cardsArr.slice().sort((a, b): number => {
       if (a.statistics.viewCount > b.statistics.viewCount) return sort ? 1 : -1;
       return -1;
     });
@@ -53,7 +52,7 @@ export class YoutubeService {
   }
 
   sortDate(sort: boolean) {
-    this.cardsArr.sort((a, b) => {
+    this.cardsArr = this.cardsArr.slice().sort((a, b) => {
       const el1 = new Date(a.snippet.publishedAt);
       const el2 = new Date(b.snippet.publishedAt);
       if (Math.floor((Date.UTC(el1.getFullYear(), el1.getMonth(), el1.getDate())

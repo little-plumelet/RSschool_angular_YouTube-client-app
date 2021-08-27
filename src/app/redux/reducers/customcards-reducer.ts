@@ -11,9 +11,13 @@ export const customCardsReducer = createReducer(initialState.customCardsState,
     return result;
   }),
   on(customCardsActions.createCustomCardSuccessful, (state, { customCard }) => {
+    const newArray = state.customCardsArray.slice().filter((el) => el.id);
+    if (!state.customCardsArray.find((el) => el.id === customCard.id)) {
+      newArray.push(customCard);
+    }
     const result = {
       ...state,
-      customCard,
+      customCardsArray: newArray,
     };
     return result;
   }),
