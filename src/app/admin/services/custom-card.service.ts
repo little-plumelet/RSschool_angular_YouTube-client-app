@@ -8,11 +8,4 @@ import { ICustomCard } from '../models/custom-card';
 export class CustomCardService {
   customCard$ = new BehaviorSubject({} as ICustomCard);
 
-  // constructor() {
-  //   console.log(this.customCard$.pipe((value) => value));
-  // }
-
-  // print() {
-  //   console.log('print', this.customCard$.pipe((value) => value));
-  // }
 }

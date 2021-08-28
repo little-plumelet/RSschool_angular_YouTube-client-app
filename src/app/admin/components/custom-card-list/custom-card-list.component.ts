@@ -2,7 +2,6 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/redux/state.models';
-import { FilterCardsService } from 'src/app/youtube/services/filter-cards.service';
 import { ICustomCard } from '../../models/custom-card';
 
 @Component({
@@ -14,10 +13,7 @@ import { ICustomCard } from '../../models/custom-card';
 export class CustomCardListComponent {
   customCardsArray: Observable<ICustomCard[]>;
 
-  constructor(
-    private store: Store<AppState>,
-    public filterCardsService: FilterCardsService,
-  ) {
+  constructor(private store: Store<AppState>) {
     this.customCardsArray = this.store.select((state) => state.customCardsState.customCardsArray);
   }
 }

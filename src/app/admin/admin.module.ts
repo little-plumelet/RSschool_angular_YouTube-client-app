@@ -12,6 +12,8 @@ import { customCardsReducer } from '../redux/reducers/customcards-reducer';
 import { CustomCardsEffects } from '../redux/effects/customcards-effects';
 import { CustomCardListComponent } from './components/custom-card-list/custom-card-list.component';
 import { CustomCardStyleDirective } from './directives/customcard-style.directive';
+import { CustomcardDetailedPageComponent } from './pages/customcard-detailed-page/customcard-detailed-page.component';
+import { DetailedCustomCardComponent } from './components/detailed-custom-card/detailed-custom-card.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,9 @@ import { CustomCardStyleDirective } from './directives/customcard-style.directiv
     CustomCardListComponent,
     CustomCardComponent,
     CustomCardStyleDirective,
+    CustomcardDetailedPageComponent,
+    DetailedCustomCardComponent,
+    CustomcardDetailedPageComponent,
   ],
   imports: [
     CommonModule,
@@ -30,13 +35,7 @@ import { CustomCardStyleDirective } from './directives/customcard-style.directiv
     ),
     EffectsModule.forFeature([CustomCardsEffects]),
     RouterModule.forChild([
-      // {
-      //   path: 'main',
-      //   component: MainPageComponent,
-      //   canActivate: [AuthGuard],
-      // },
-      // { path: 'main/:id', component: DetailedPageComponent, pathMatch: 'full' },
-
+      { path: 'main/:id', component: CustomcardDetailedPageComponent, pathMatch: 'full' },
     ]),
   ],
   exports: [

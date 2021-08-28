@@ -59,7 +59,7 @@ export class CustomCardStyleDirective implements OnInit {
 
   ngOnInit() {
     const currentDate = new Date();
-    const publishingDate = new Date(this.dateStr.replace('/(T[A-Za-z0-9_-]*/g', ''));
+    const publishingDate = new Date(this.dateStr);
 
     this.diff = calculateDifference(currentDate, publishingDate);
 

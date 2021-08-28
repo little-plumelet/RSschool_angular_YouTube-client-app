@@ -2,16 +2,16 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
   width: 90%;
   margin: 0 auto;
-  padding-top: 50px;
+  padding-top: 100px;
 }
 
 .custom-cards-list-title {
   position: absolute;
-  top: 0;
+  top: 50px;
   font-size: 40px;
   font-weight: 700;
   color: #3f51b5;

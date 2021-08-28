@@ -18,8 +18,3 @@ export const getVideoCardsFailed = createAction(
 export const updateVideoCards = createAction(
   '[VIDEOCARDS PAGE] UPDATE VIDEOS',
 );
-
-export const getVideoCardById = createAction(
-  '[VIDEOCARDS PAGE] GET VIDEO BY ID',
-  props<{ videoId: string }>(),
-);

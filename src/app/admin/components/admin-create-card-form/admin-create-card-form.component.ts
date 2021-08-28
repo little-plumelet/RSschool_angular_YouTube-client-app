@@ -62,7 +62,7 @@ export class AdminCreateCardFormComponent implements OnInit, OnDestroy {
   createId(): string {
     let id = '';
     for (let i = 0; i < ID_LENGTH; i += 1) {
-      id += String((Math.random() * 100) / 100);
+      id += String(Math.floor(Math.random() * 10));
     }
     return id;
   }
