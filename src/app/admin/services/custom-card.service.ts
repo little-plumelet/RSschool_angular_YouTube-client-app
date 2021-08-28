@@ -7,5 +7,4 @@ import { ICustomCard } from '../models/custom-card';
 })
 export class CustomCardService {
   customCard$ = new BehaviorSubject({} as ICustomCard);
-
 }
