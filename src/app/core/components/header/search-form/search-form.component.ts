@@ -4,9 +4,9 @@ import {
   OnInit,
   OnDestroy,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { SearchInputService } from 'src/app/core/services/search-input.service';
+import { YoutubeService } from 'src/app/youtube/services/youtube.service';
 import { FilterCardsService } from '../../../../youtube/services/filter-cards.service';
 
 @Component({
@@ -18,24 +18,26 @@ import { FilterCardsService } from '../../../../youtube/services/filter-cards.se
 export class SearchFormComponent implements OnInit, OnDestroy {
   inputValue = '';
 
+  inputValue$ = new Subject<string>();
+
   subscription = new Subscription();
 
   constructor(
     public filterCardsService: FilterCardsService,
-    public inputService: SearchInputService,
+    public youtubeService: YoutubeService
   ) {}
 
   ngOnInit() {
-    this.subscription = this.inputService.inputValue$.pipe(
+    this.subscription = this.inputValue$.pipe(
       debounceTime(1000),
       distinctUntilChanged(),
-    ).subscribe(() => this.inputService.getCards());;
+    ).subscribe(() => this.youtubeService.getCards(this.inputValue));;
   }
 
   setValue() {
     if (this.inputValue.length >= 3) {
-      this.inputService.inputValue$.next(this.inputValue);
-      this.inputService.inputValue = this.inputValue;
+      this.inputValue$.next(this.inputValue);
+      this.inputValue = this.inputValue;
     }
   }
 
