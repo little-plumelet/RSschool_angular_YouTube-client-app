@@ -1,7 +1,7 @@
-<mat-card *ngIf="item" class="card-detailed-container">
+<mat-card *ngIf="(youtubeService.cardObservable$ | async)" class="card-detailed-container">
   <mat-icon-button class="card-go-back" routerLink="/main"><mat-icon>chevron_left</mat-icon></mat-icon-button>
   <mat-card-content class="main-card-content">
-    <img  class="card-picture" mat-card-image [src]="item.snippet.thumbnails.high.url" alt="Photo of the card">
+    <img class="card-picture" mat-card-image [src]="item.snippet.thumbnails.high.url" alt="Photo of the card">
     <mat-card-content class="card-info">
       <section class="card-info-main-component">
         <div class="card-header">
@@ -19,6 +19,6 @@
     </mat-card-content>
   </mat-card-content>
   <mat-card-footer class="card-footer">
-    <div class="date-indicator" appSearchItemStyle dateStr="{{ item.snippet.publishedAt }}"></div>
+    <!-- <div class="date-indicator" appSearchItemStyle dateStr="{{ item.snippet.publishedAt }}"></div> -->
   </mat-card-footer>
 </mat-card>

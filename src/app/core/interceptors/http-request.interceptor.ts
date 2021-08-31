@@ -13,10 +13,11 @@ const API_TOKEN = 'AIzaSyDL17DSc1BgZQNbxc39PlfGXL4B1lSGBts';
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const regexFirstHalfOfUrl = /^(\w+\?)/g;
-    const regexLastHalfOfUrl = /[^?]*$/;
     const reqCloned = request.clone({
-      url: `${BASE_URL}${request.url.match(regexFirstHalfOfUrl)}key=${API_TOKEN}${request.url.match(regexLastHalfOfUrl)}`,
+      url: `${BASE_URL}${request.url}`,
+      setParams: {
+        key: API_TOKEN,
+      },
     });
     return next.handle(reqCloned);
   }
