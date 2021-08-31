@@ -16,7 +16,12 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     const regexFirstHalfOfUrl = /^(\w+\?)/g;
     const regexLastHalfOfUrl = /[^?]*$/;
     const reqCloned = request.clone({
-      url: `${BASE_URL}${request.url.match(regexFirstHalfOfUrl)}key=${API_TOKEN}${request.url.match(regexLastHalfOfUrl)}`,
+      url: `${BASE_URL}${request.url}`,
+      setParams: {
+        key: API_TOKEN,
+      },
+
+      // url: `${BASE_URL}${request.url.match(regexFirstHalfOfUrl)}key=${API_TOKEN}${request.url.match(regexLastHalfOfUrl)}`,
     });
     return next.handle(reqCloned);
   }
