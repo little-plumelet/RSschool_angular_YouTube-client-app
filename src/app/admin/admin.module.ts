@@ -35,7 +35,7 @@ import { DetailedCustomCardComponent } from './components/detailed-custom-card/d
     ),
     EffectsModule.forFeature([CustomCardsEffects]),
     RouterModule.forChild([
-      { path: 'main/:id', component: CustomcardDetailedPageComponent, pathMatch: 'full' },
+      { path: 'main/custom/:id', component: CustomcardDetailedPageComponent, pathMatch: 'full' },
     ]),
   ],
   exports: [

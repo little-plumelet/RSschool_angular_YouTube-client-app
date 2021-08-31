@@ -4,8 +4,8 @@ import {
   Subject,
   BehaviorSubject,
 } from 'rxjs';
-import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import { ISearchItem } from '../models/search-item.model';
+import { YoutubeRequestsService } from './youtube-requests.service';
 
 const MILLISECONDS_IN_DAY = 1000 * 60 * 60 * 24;
 
@@ -25,13 +25,13 @@ export class YoutubeService {
 
   card: ISearchItem | undefined = {} as ISearchItem;
 
-  constructor(private httpRequests: HttpRequestsService) {
+  constructor(private youtubeRequests: YoutubeRequestsService) {
     this.cardsArrObservable$ = this.cardsArrChange.asObservable();
     this.cardObservable$ = this.cardChange.asObservable();
   }
 
   getCards(value: string) {
-    this.httpRequests.getCards(value).subscribe((cards) => {
+    this.youtubeRequests.getCards(value).subscribe((cards) => {
       this.cardsArrChange.next(cards);
       this.cardsArr = cards;
     });
@@ -69,7 +69,7 @@ export class YoutubeService {
   }
 
   getCardById(id: string) {
-    this.httpRequests.getCardById(id).subscribe((card) => {
+    this.youtubeRequests.getCardById(id).subscribe((card) => {
       this.cardChange.next(card[0]);
       [this.card] = card;
     });

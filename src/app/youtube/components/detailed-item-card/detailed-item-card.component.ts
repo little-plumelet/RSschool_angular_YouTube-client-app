@@ -24,7 +24,8 @@ export class DetailedItemCardComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     public youtubeService: YoutubeService,
     private router: Router,
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.subscription = this.route.params.subscribe((params: Params) => {
