@@ -30,10 +30,6 @@ export class YoutubeService {
     this.cardObservable$ = this.cardChange.asObservable();
   }
 
-  createCards(): void {
-    this.cardsArrChange.next(this.cardsArr);
-  }
-
   getCards(value: string) {
     this.httpRequests.getCards(value).subscribe((cards) => {
       this.cardsArrChange.next(cards);
