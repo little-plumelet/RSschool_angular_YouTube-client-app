@@ -2,14 +2,8 @@ import {
   Component,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { YoutubeService } from '../../services/youtube.service';
+import { sortingOrder, YoutubeService } from '../../services/youtube.service';
 import { FilterCardsService } from '../../services/filter-cards.service';
-
-export const sortingOrder = {
-  asc: 'ascending',
-  dsc: 'discending',
-  unsorted: 'unsorted'
-};
 
 @Component({
   selector: 'app-filter',

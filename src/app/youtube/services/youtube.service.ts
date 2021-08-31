@@ -4,11 +4,15 @@ import {
   Subject,
   BehaviorSubject,
 } from 'rxjs';
-import { sortingOrder } from '../components/filter/filter.component';
 import { ISearchItem } from '../models/search-item.model';
 import { YoutubeRequestsService } from './youtube-requests.service';
 
 const MILLISECONDS_IN_DAY = 1000 * 60 * 60 * 24;
+export const sortingOrder = {
+  asc: 'ascending',
+  dsc: 'discending',
+  unsorted: 'unsorted',
+};
 
 @Injectable({
   providedIn: 'root',
