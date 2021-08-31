@@ -4,6 +4,7 @@ import {
   Subject,
   BehaviorSubject,
 } from 'rxjs';
+import { sortingOrder } from '../components/filter/filter.component';
 import { ISearchItem } from '../models/search-item.model';
 import { YoutubeRequestsService } from './youtube-requests.service';
 
@@ -37,28 +38,32 @@ export class YoutubeService {
     });
   }
 
-  sortViewsCount(sort: boolean) {
+  sortViewsCount(sortingDirection: string) {
+    console.log('sortingDirection', sortingDirection)
     this.cardsArr = this.cardsArr.slice().sort((a, b): number => {
-      if (a.statistics.viewCount > b.statistics.viewCount) return sort ? 1 : -1;
-      return -1;
+      if (Number(a.statistics.viewCount) > Number(b.statistics.viewCount)) {
+        console.log('1sortingDirection')
+        return ((sortingDirection === sortingOrder.dsc) ? -1 : 1);
+      }
+      console.log('2sortingDirection')
+      return ((sortingDirection === sortingOrder.asc) ? -1 : 1);
     });
 
     this.cardsArr = Array.from(this.cardsArr);
     this.cardsArrChange.next(this.cardsArr);
   }
 
-  sortDate(sort: boolean) {
+  sortDate(sortingDirection: string) {
     this.cardsArr = this.cardsArr.slice().sort((a, b) => {
       const el1 = new Date(a.snippet.publishedAt);
       const el2 = new Date(b.snippet.publishedAt);
       if (Math.floor((Date.UTC(el1.getFullYear(), el1.getMonth(), el1.getDate())
           - Date.UTC(el2.getFullYear(), el2.getMonth(), el2.getDate()))
           / MILLISECONDS_IN_DAY) > 0) {
-        return (sort ? -1 : 1);
+        return ((sortingDirection === sortingOrder.dsc) ? -1 : 1);
       }
-      return sort ? 1 : -1;
+      return ((sortingDirection === sortingOrder.asc) ? -1 : 1);
     });
-
     this.cardsArr = Array.from(this.cardsArr);
     this.cardsArrChange.next(this.cardsArr);
   }
