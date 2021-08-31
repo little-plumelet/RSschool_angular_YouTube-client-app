@@ -63,7 +63,7 @@ export class YoutubeService {
     this.cardsArrChange.next(this.cardsArr);
   }
 
-  filter() {
+  filterByWord() {
     this.cardsArr = Array.from(this.cardsArr);
     this.cardsArrChange.next(this.cardsArr);
   }
