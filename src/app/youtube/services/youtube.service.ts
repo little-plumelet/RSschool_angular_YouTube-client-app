@@ -4,11 +4,15 @@ import {
   Subject,
   BehaviorSubject,
 } from 'rxjs';
-import { sortingOrder } from '../components/filter/filter.component';
 import { ISearchItem } from '../models/search-item.model';
 import { YoutubeRequestsService } from './youtube-requests.service';
 
 const MILLISECONDS_IN_DAY = 1000 * 60 * 60 * 24;
+export const sortingOrder = {
+  asc: 'ascending',
+  dsc: 'discending',
+  unsorted: 'unsorted',
+};
 
 @Injectable({
   providedIn: 'root',
@@ -39,13 +43,10 @@ export class YoutubeService {
   }
 
   sortViewsCount(sortingDirection: string) {
-    console.log('sortingDirection', sortingDirection)
     this.cardsArr = this.cardsArr.slice().sort((a, b): number => {
       if (Number(a.statistics.viewCount) > Number(b.statistics.viewCount)) {
-        console.log('1sortingDirection')
         return ((sortingDirection === sortingOrder.dsc) ? -1 : 1);
       }
-      console.log('2sortingDirection')
       return ((sortingDirection === sortingOrder.asc) ? -1 : 1);
     });
 
