@@ -5,6 +5,12 @@ import {
 import { YoutubeService } from '../../services/youtube.service';
 import { FilterCardsService } from '../../services/filter-cards.service';
 
+export const sortingOrder = {
+  asc: 'ascending',
+  dsc: 'discending',
+  unsorted: 'unsorted'
+};
+
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
@@ -17,6 +23,10 @@ export class FilterComponent {
   sortCount = true;
 
   sortDate = true;
+
+  sortOrderCount = sortingOrder.unsorted;
+
+  sortOrderDate = sortingOrder.unsorted;
 
   iconDateContent = 'vertical_align_center';
 
@@ -50,10 +60,32 @@ export class FilterComponent {
   }
 
   sortByDate() {
-    this.youtubeService.sortDate(this.sortDate = !this.sortDate);
+    this.sortOrderCount = sortingOrder.unsorted;
+    switch (this.sortOrderDate) {
+      case 'unsorted':
+        this.sortOrderDate = sortingOrder.dsc;
+        break;
+      case 'discending':
+        this.sortOrderDate = sortingOrder.asc;
+        break;
+      default:
+        this.sortOrderDate = sortingOrder.dsc;
+    }
+    this.youtubeService.sortDate(this.sortOrderDate);
   }
 
   sortByViewsCount() {
-    this.youtubeService.sortViewsCount(this.sortCount = !this.sortCount);
+    this.sortOrderDate = sortingOrder.unsorted;
+    switch (this.sortOrderCount) {
+      case 'unsorted':
+        this.sortOrderCount = sortingOrder.dsc;
+        break;
+      case 'discending':
+        this.sortOrderCount = sortingOrder.asc;
+        break;
+      default:
+        this.sortOrderCount = sortingOrder.dsc;
+    }
+    this.youtubeService.sortViewsCount(this.sortOrderCount);
   }
 }
