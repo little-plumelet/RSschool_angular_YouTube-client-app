@@ -1,0 +1,52 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+}
+
+.mat-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+
+  cursor: pointer;
+  margin: 10px;
+
+  &.inactive {
+      color: rgb(198, 184, 184);
+      background: repeating-linear-gradient(
+          45deg,
+          #f8f8f8,
+          #f8f8f8 10px,
+          #ecebebd2 10px,
+          #ecebebd2 20px
+      );
+  }
+
+  &:hover {
+      transition: all 0.2s ease-out;
+      top: -4px;
+  }
+}
+
+.mat-card-actions {
+  display: flex;
+
+  :last-child {
+      margin-left: auto;
+  }
+}
+
+ .card-footer {
+   bottom: 0;
+ }
+
+ .date-indicator {
+   height: 15px;
+   background-color: blue;
+   bottom: 0;
+ }

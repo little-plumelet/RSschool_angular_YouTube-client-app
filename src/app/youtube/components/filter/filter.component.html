@@ -3,7 +3,7 @@
   <button
     class="filter-panel-item"
     mat-stroked-button color="primary"
-    (click)="youtubeService.sortDate(sortDate = !sortDate)"
+    (click)="sortByDate()"
     (click)="toggleIcon('iconDateContent')"
   >
   <span>date</span>
@@ -12,7 +12,7 @@
   <button
     class="filter-panel-item"
     mat-stroked-button color="primary"
-    (click)="youtubeService.sortViewsCount(sortCount = !sortCount)"
+    (click)="sortByViewsCount()"
     (click)="toggleIcon('iconViewsCountContent')"
   >
   <span>views count</span>
@@ -26,13 +26,13 @@
       name="filter"
       id="key-word-filter"
       placeholder="by word or sentence"
-      [(ngModel)]="filterW"
+      [(ngModel)]="filterWord"
     >
     <button
       class="filter-input-button"
       mat-stroked-button color="primary"
-      (click)="filterCardsService.changeFilterWord(filterW)"
-      (click)="youtubeService.filter()"
+      (click)="filterCardsService.changeFilterWord(filterWord)"
+      (click)="youtubeService.filterByWord()"
   >filter</button>
 </form>
 </div>

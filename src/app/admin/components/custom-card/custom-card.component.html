@@ -1,0 +1,14 @@
+<mat-card *ngIf="customCard" class="example-card">
+  <img mat-card-image [src]="customCard.imageLink" alt="">
+  <mat-card-content>
+    <mat-card-title>{{ customCard.title }}</mat-card-title>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-stroked-button [routerLink]="['/main/custom', customCard.id]">
+      More...
+    </button>
+  </mat-card-actions>
+  <mat-card-footer class="card-footer">
+    <div class="date-indicator" appCustomCardStyle dateStr="{{ customCard.creationDate }}"></div>
+  </mat-card-footer>
+</mat-card>

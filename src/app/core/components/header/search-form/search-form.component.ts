@@ -1,9 +1,16 @@
 import {
   Component,
   ChangeDetectionStrategy,
+  OnInit,
+  OnDestroy,
 } from '@angular/core';
-import { SearchInputService } from 'src/app/core/services/search-input.service';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { YoutubeService } from 'src/app/youtube/services/youtube.service';
 import { FilterCardsService } from '../../../../youtube/services/filter-cards.service';
+
+const DEBOUNCE_TIME = 1000;
+const INPUT_VALUE_MIN_LENGTH = 3;
 
 @Component({
   selector: 'app-search-form',
@@ -11,9 +18,32 @@ import { FilterCardsService } from '../../../../youtube/services/filter-cards.se
   styleUrls: ['./search-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchFormComponent {
+export class SearchFormComponent implements OnInit, OnDestroy {
+  inputValue = '';
+
+  inputValue$ = new Subject<string>();
+
+  subscription = new Subscription();
+
   constructor(
     public filterCardsService: FilterCardsService,
-    public inputService: SearchInputService,
+    public youtubeService: YoutubeService,
   ) {}
+
+  ngOnInit() {
+    this.subscription = this.inputValue$.pipe(
+      debounceTime(DEBOUNCE_TIME),
+      distinctUntilChanged(),
+    ).subscribe(() => this.youtubeService.getCards(this.inputValue));
+  }
+
+  setValue() {
+    if (this.inputValue.length >= INPUT_VALUE_MIN_LENGTH) {
+      this.inputValue$.next(this.inputValue);
+    }
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }

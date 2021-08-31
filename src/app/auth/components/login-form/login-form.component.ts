@@ -8,12 +8,13 @@ import { LoginService } from '../../services/login.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginFormComponent {
-  name: string;
+  name = '';
 
-  password: string;
+  password = '';
 
-  constructor(public loginService: LoginService) {
-    this.name = '';
-    this.password = '';
+  constructor(public loginService: LoginService) {}
+
+  onLogin() {
+    this.loginService.submitDataToLocalStorage(this.name, this.password);
   }
 }

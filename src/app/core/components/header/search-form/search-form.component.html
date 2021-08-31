@@ -5,8 +5,8 @@
   type="text"
   name="search"
   placeholder="What do you want to find?"
-  #searchInput
-  (input)="inputService.setValue(searchInput.value)"
+  [(ngModel)]="inputValue"
+  (input)="setValue()"
   >
   <app-settings></app-settings>
 </form>

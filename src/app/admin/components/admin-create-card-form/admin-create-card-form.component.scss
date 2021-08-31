@@ -1,0 +1,42 @@
+.form-create-card {
+  box-sizing: border-box;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-image: linear-gradient(to right, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);;
+  padding: 60px 40px;
+  border-radius: 10px;
+
+  &-title {
+    font-size: 40px;
+    font-weight: 700;
+    color: #3f51b5;
+    margin-bottom: 50px;
+  }
+
+  &-label {
+    font-size: 20px;
+    color: #3f51b5;
+    margin-bottom: 10px;
+  }
+}
+
+.title-input,
+.description-input,
+.image-input,
+.video-link-input {
+  box-sizing: border-box;
+  outline: none;
+  height: 50px;
+  width: 100%;
+  border: solid 1px #3f51b5;
+  text-align: left;
+  margin-bottom: 30px;
+  font-size: 20px;
+  padding-left: 15px;
+}
+
+.create-btn {
+  width: 100%;
+}

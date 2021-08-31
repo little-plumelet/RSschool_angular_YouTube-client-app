@@ -1,0 +1,24 @@
+
+<mat-card *ngIf="customCard$ | async" class="card-detailed-container">
+  <mat-icon-button class="card-go-back" routerLink="/main"><mat-icon>chevron_left</mat-icon></mat-icon-button>
+  <mat-card-content class="main-card-content">
+    <img  class="card-picture" mat-card-image [src]="(customCard$ | async)?.imageLink" alt="Photo of the card">
+    <mat-card-content class="card-info">
+      <section class="card-info-main-component">
+        <div class="card-header">
+          <mat-card-title class="card-title">{{ (customCard$ | async)?.title }}</mat-card-title>
+          <span class="date">{{ (customCard$ | async)?.creationDate |  date:'fullDate' }}</span>
+        </div>
+        <div class="description">
+          <span class="description-title">Description:</span>
+          <p class="description-text">
+            {{ (customCard$ | async)?.description }}
+          </p>
+        </div>
+      </section>
+    </mat-card-content>
+  </mat-card-content>
+  <mat-card-footer class="card-footer">
+    <div class="date-indicator" appCustomCardStyle dateStr="{{ (customCard$ | async)?.creationDate }}"></div>
+  </mat-card-footer>
+</mat-card>

@@ -1,4 +1,4 @@
-<mat-card *ngIf="youtubeService.cardObservable$ | async" class="card-detailed-container">
+<mat-card *ngIf="item" class="card-detailed-container">
   <mat-icon-button class="card-go-back" routerLink="/main"><mat-icon>chevron_left</mat-icon></mat-icon-button>
   <mat-card-content class="main-card-content">
     <img  class="card-picture" mat-card-image [src]="item.snippet.thumbnails.high.url" alt="Photo of the card">

@@ -24,3 +24,4 @@ import { LoginFormComponent } from './components/login-form/login-form.component
   ],
 })
 export class AuthModule { }
+export { LoginService } from './services/login.service';
