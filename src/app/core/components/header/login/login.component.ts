@@ -12,9 +12,13 @@ import { LoginService } from 'src/app/auth/auth.module';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  stream$: Subject<string>;
+  name$: Subject<string>;
 
   constructor(public loginService: LoginService) {
-    this.stream$ = this.loginService.getName();
+    this.name$ = this.loginService.getName();
+  }
+
+  clearData() {
+    this.loginService.clearDataInLocalStorage()
   }
 }

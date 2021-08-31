@@ -36,7 +36,7 @@ export class LoginService {
     this.isLoggedStream$.subscribe((value) => { this.isLogged = value; });
   }
 
-  submitDateToLocalStorage(name: string, password: string) {
+  submitDataToLocalStorage(name: string, password: string) {
     this.name = name;
     this.password = password;
     localStorage.setItem('name', this.name);
@@ -45,7 +45,7 @@ export class LoginService {
     this.userName$.next(this.name);
   }
 
-  clearDateInLocalStorage() {
+  clearDataInLocalStorage() {
     this.name = 'Your name';
     this.password = '';
     localStorage.removeItem('name');

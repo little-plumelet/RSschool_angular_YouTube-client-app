@@ -15,6 +15,6 @@ export class LoginFormComponent {
   constructor(public loginService: LoginService) {}
 
   onLogin() {
-    this.loginService.submitDateToLocalStorage(this.name, this.password);
+    this.loginService.submitDataToLocalStorage(this.name, this.password);
   }
 }
