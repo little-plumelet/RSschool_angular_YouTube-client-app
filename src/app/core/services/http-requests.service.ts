@@ -8,24 +8,24 @@ import { ISearchResponse } from 'src/app/youtube/models/search-response.model';
   providedIn: 'root',
 })
 export class HttpRequestsService {
-  url = '';
+  baseUrl = '';
 
-  smallUrl = '';
+  urlForStatistics = '';
 
   constructor(private http: HttpClient) {}
 
   getCards(value: string) {
     // `https://www.googleapis.com/youtube/v3/search?key=AIzaSyDL17DSc1BgZQNbxc39PlfGXL4B1lSGBts&type=video&part=snippet&maxResults=10&q=${value}`;
-    this.url = `search?&type=video&part=snippet&maxResults=10&q=${value}`;
+    this.baseUrl = `search?&type=video&part=snippet&maxResults=10&q=${value}`;
     const idArr: string[] = [];
-    return this.http.get<ISearchResponse>(this.url)
+    return this.http.get<ISearchResponse>(this.baseUrl)
       .pipe(
-        switchMap((response) => {
-          response.items.forEach((el) => idArr.push(el.id.videoId));
-          this.smallUrl = `videos?&id=${[...idArr]}&part=snippet,statistics`;
-          return this.http.get<ISearchResponse>(this.smallUrl)
+        switchMap((videoList) => {
+          videoList.items.forEach((el) => idArr.push(el.id.videoId));
+          this.urlForStatistics = `videos?&id=${[...idArr]}&part=snippet,statistics`;
+          return this.http.get<ISearchResponse>(this.urlForStatistics)
             .pipe(
-              map((response2) => response2.items),
+              map((videListWithStatistics) => videListWithStatistics.items),
             );
         }),
         catchError((error) => {
@@ -36,10 +36,10 @@ export class HttpRequestsService {
   }
 
   getCardById(id: string) {
-    this.smallUrl = `videos?&id=${id}&part=snippet,statistics`;
-    return this.http.get<ISearchResponse>(this.smallUrl)
+    this.urlForStatistics = `videos?&id=${id}&part=snippet,statistics`;
+    return this.http.get<ISearchResponse>(this.urlForStatistics)
       .pipe(
-        map((response) => response.items),
+        map((videoList) => videoList.items),
         catchError((error) => {
           console.log('Error is caught!', error);
           return throwError(error);

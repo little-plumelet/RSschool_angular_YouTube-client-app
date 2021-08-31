@@ -9,6 +9,9 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { YoutubeService } from 'src/app/youtube/services/youtube.service';
 import { FilterCardsService } from '../../../../youtube/services/filter-cards.service';
 
+const DEBOUNCE_TIME = 1000;
+const INPUT_VALUE_MIN_LENGTH = 3;
+
 @Component({
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',
@@ -24,20 +27,19 @@ export class SearchFormComponent implements OnInit, OnDestroy {
 
   constructor(
     public filterCardsService: FilterCardsService,
-    public youtubeService: YoutubeService
+    public youtubeService: YoutubeService,
   ) {}
 
   ngOnInit() {
     this.subscription = this.inputValue$.pipe(
-      debounceTime(1000),
+      debounceTime(DEBOUNCE_TIME),
       distinctUntilChanged(),
-    ).subscribe(() => this.youtubeService.getCards(this.inputValue));;
+    ).subscribe(() => this.youtubeService.getCards(this.inputValue));
   }
 
   setValue() {
-    if (this.inputValue.length >= 3) {
+    if (this.inputValue.length >= INPUT_VALUE_MIN_LENGTH) {
       this.inputValue$.next(this.inputValue);
-      this.inputValue = this.inputValue;
     }
   }
 

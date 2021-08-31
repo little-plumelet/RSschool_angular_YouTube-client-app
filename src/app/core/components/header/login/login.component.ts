@@ -19,6 +19,6 @@ export class LoginComponent {
   }
 
   clearData() {
-    this.loginService.clearDataInLocalStorage()
+    this.loginService.clearDataInLocalStorage();
   }
 }
