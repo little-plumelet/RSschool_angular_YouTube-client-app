@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 import { YoutubeService } from 'src/app/youtube/services/youtube.service';
 
 @Injectable({
@@ -9,25 +8,9 @@ import { YoutubeService } from 'src/app/youtube/services/youtube.service';
 export class SearchInputService {
   inputValue = '';
 
-  public inputValue$: Observable<string>;
+  public inputValue$ = new BehaviorSubject<string>('');
 
-  private inputValue$$ = new BehaviorSubject<string>('');
-
-  constructor(private youtubeService: YoutubeService) {
-    this.inputValue$ = this.inputValue$$.asObservable();
-
-    this.inputValue$$.pipe(
-      debounceTime(1000),
-      distinctUntilChanged(),
-    ).subscribe(() => this.getCards());
-  }
-
-  setValue(value: string) {
-    if (value.length >= 3) {
-      this.inputValue$$.next(value);
-      this.inputValue = value;
-    }
-  }
+  constructor(private youtubeService: YoutubeService) {}
 
   getCards() {
     if (this.inputValue) this.youtubeService.getCards(this.inputValue);
