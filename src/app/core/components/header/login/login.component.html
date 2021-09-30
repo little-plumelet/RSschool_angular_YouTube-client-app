@@ -1,15 +1,21 @@
 <div class="login">
-  <!-- <span *ngIf="!loginService.isLogged"class="login-name">{{ loginService.name }}</span> -->
-  <span class="login-name">{{ stream$ | async }}</span>
+  <span class="login-name">{{ name$ | async }}</span>
   <img class="user-icon" src="../../../assets/images/search-form/user-icon_default.png" alt="user-icon">
 </div>
 <div *ngIf="loginService.isLogged"
-class="logout">
+  class="logout">
   <button
-  mat-raised-button
-  color="primary"
-  (click)="loginService.clearDateInLocalStorage()"
-  [routerLink]="['']"
+    mat-raised-button
+    color="primary"
+    [routerLink]="['/admin']"
+  >
+    to ADMIN page
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="clearData()"
+    [routerLink]="['']"
   >
     logout
   </button>

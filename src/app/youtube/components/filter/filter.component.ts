@@ -1,9 +1,8 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { YoutubeService } from '../../services/youtube.service';
+import { sortingOrder, YoutubeService } from '../../services/youtube.service';
 import { FilterCardsService } from '../../services/filter-cards.service';
 
 @Component({
@@ -12,42 +11,75 @@ import { FilterCardsService } from '../../services/filter-cards.service';
   styleUrls: ['./filter.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FilterComponent implements OnInit {
-  filterW: string;
+export class FilterComponent {
+  filterWord = '';
 
-  sortCount: boolean;
+  sortCount = true;
 
-  sortDate: boolean;
+  sortDate = true;
 
-  iconDateContent: string;
+  sortOrderCount = sortingOrder.unsorted;
 
-  iconViewsCountContent: string;
+  sortOrderDate = sortingOrder.unsorted;
+
+  iconDateContent = 'vertical_align_center';
+
+  iconViewsCountContent = 'vertical_align_center';
 
   constructor(
     public filterCardsService: FilterCardsService,
     public youtubeService: YoutubeService,
-  ) {
-    this.filterW = '';
-    this.sortCount = true;
-    this.sortDate = true;
-    this.iconDateContent = 'vertical_align_center';
-    this.iconViewsCountContent = 'vertical_align_center';
-  }
-
-  ngOnInit(): void {
-    console.log('OnInit');
-  }
+  ) {}
 
   toggleIcon(key: keyof FilterComponent) {
-    if (this[key] === 'vertical_align_center') (this[key] as string) = 'arrow_downward';
-    else if (this[key] === 'arrow_downward') (this[key] as string) = 'arrow_upward';
-    else (this[key] as string) = 'arrow_downward';
+    switch (this[key]) {
+      case 'vertical_align_center':
+        (this[key] as string) = 'arrow_downward';
+        break;
+      case 'arrow_downward':
+        (this[key] as string) = 'arrow_upward';
+        break;
+      default:
+        (this[key] as string) = 'arrow_downward';
+        break;
+    }
+
     if (key === 'iconDateContent') this.iconViewsCountContent = 'vertical_align_center';
-    else if (key === 'iconViewsCountContent') this.iconDateContent = 'vertical_align_center';
+    else this.iconDateContent = 'vertical_align_center';
   }
 
   clearIcons() {
     this.iconViewsCountContent = 'vertical_align_center';
     this.iconDateContent = 'vertical_align_center';
+  }
+
+  sortByDate() {
+    this.sortOrderCount = sortingOrder.unsorted;
+    switch (this.sortOrderDate) {
+      case 'unsorted':
+        this.sortOrderDate = sortingOrder.dsc;
+        break;
+      case 'discending':
+        this.sortOrderDate = sortingOrder.asc;
+        break;
+      default:
+        this.sortOrderDate = sortingOrder.dsc;
+    }
+    this.youtubeService.sortDate(this.sortOrderDate);
+  }
+
+  sortByViewsCount() {
+    this.sortOrderDate = sortingOrder.unsorted;
+    switch (this.sortOrderCount) {
+      case 'unsorted':
+        this.sortOrderCount = sortingOrder.dsc;
+        break;
+      case 'discending':
+        this.sortOrderCount = sortingOrder.asc;
+        break;
+      default:
+        this.sortOrderCount = sortingOrder.dsc;
+    }
+    this.youtubeService.sortViewsCount(this.sortOrderCount);
   }
 }

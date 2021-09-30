@@ -5,85 +5,79 @@ import {
   BehaviorSubject,
 } from 'rxjs';
 import { ISearchItem } from '../models/search-item.model';
-import { items } from '../components/search/search-results/temporary-constants';
+import { YoutubeRequestsService } from './youtube-requests.service';
+
+const MILLISECONDS_IN_DAY = 1000 * 60 * 60 * 24;
+export const sortingOrder = {
+  asc: 'ascending',
+  dsc: 'discending',
+  unsorted: 'unsorted',
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class YoutubeService {
-  cardsArr: ISearchItem[];
+  cardsArr: ISearchItem[] = [];
 
-  cardsArrChange: Subject<ISearchItem[]> = new BehaviorSubject<ISearchItem[]>([] as ISearchItem[]);
+  cardsArrObservable$: Observable<ISearchItem[]>;
 
-  card: ISearchItem | undefined;
+  private cardsArrChange = new BehaviorSubject<ISearchItem[]>([]);
 
-  constructor() {
-    this.cardsArr = [];
+  cardObservable$: Observable<ISearchItem>;
 
-    this.card = {} as ISearchItem;
+  private cardChange = new Subject<ISearchItem>();
 
-    this.cardsArrChange.subscribe((arr) => {
-      this.cardsArr = arr;
+  card: ISearchItem | undefined = {} as ISearchItem;
+
+  constructor(private youtubeRequests: YoutubeRequestsService) {
+    this.cardsArrObservable$ = this.cardsArrChange.asObservable();
+    this.cardObservable$ = this.cardChange.asObservable();
+  }
+
+  getCards(value: string) {
+    this.youtubeRequests.getCards(value).subscribe((cards) => {
+      this.cardsArrChange.next(cards);
+      this.cardsArr = cards;
     });
   }
 
-  createCards(): void {
-    this.cardsArr = Array.from(items);
-    this.cardsArrChange.next(this.cardsArr);
-  }
-
-  getCards(): Observable<ISearchItem[]> {
-    return this.cardsArrChange.asObservable();
-  }
-
-  sortViewsCount(sort: boolean) {
-    if (sort) {
-      this.cardsArr.sort((a, b): number => {
-        if (a.statistics.viewCount > b.statistics.viewCount) return 1;
-        return -1;
-      });
-    } else {
-      this.cardsArr.sort((a, b): number => {
-        if (a.statistics.viewCount < b.statistics.viewCount) return 1;
-        return -1;
-      });
-    }
-    this.cardsArr = Array.from(this.cardsArr);
-    this.cardsArrChange.next(this.cardsArr);
-  }
-
-  sortDate(sort: boolean) {
-    if (sort) {
-      this.cardsArr.sort((a, b) => {
-        const el1 = new Date(a.snippet.publishedAt.replace('/(T[A-Za-z0-9_-]*/g', ''));
-        const el2 = new Date(b.snippet.publishedAt.replace('/(T[A-Za-z0-9_-]*/g', ''));
-        if (Math.floor((Date.UTC(el1.getFullYear(), el1.getMonth(), el1.getDate())
-            - Date.UTC(el2.getFullYear(), el2.getMonth(), el2.getDate()))
-            / (1000 * 60 * 60 * 24)) > 0) return -1;
-        return 1;
-      });
-    } else {
-      this.cardsArr.sort((a, b) => {
-        const el1 = new Date(a.snippet.publishedAt.replace('/(T[A-Za-z0-9_-]*/g', ''));
-        const el2 = new Date(b.snippet.publishedAt.replace('/(T[A-Za-z0-9_-]*/g', ''));
-        if (Math.floor((Date.UTC(el1.getFullYear(), el1.getMonth(), el1.getDate())
-            - Date.UTC(el2.getFullYear(), el2.getMonth(), el2.getDate()))
-            / (1000 * 60 * 60 * 24)) > 0) return 1;
-        return -1;
-      });
-    }
+  sortViewsCount(sortingDirection: string) {
+    this.cardsArr = this.cardsArr.slice().sort((a, b): number => {
+      if (Number(a.statistics.viewCount) > Number(b.statistics.viewCount)) {
+        return ((sortingDirection === sortingOrder.dsc) ? -1 : 1);
+      }
+      return ((sortingDirection === sortingOrder.asc) ? -1 : 1);
+    });
 
     this.cardsArr = Array.from(this.cardsArr);
     this.cardsArrChange.next(this.cardsArr);
   }
 
-  filter() {
+  sortDate(sortingDirection: string) {
+    this.cardsArr = this.cardsArr.slice().sort((a, b) => {
+      const el1 = new Date(a.snippet.publishedAt);
+      const el2 = new Date(b.snippet.publishedAt);
+      if (Math.floor((Date.UTC(el1.getFullYear(), el1.getMonth(), el1.getDate())
+          - Date.UTC(el2.getFullYear(), el2.getMonth(), el2.getDate()))
+          / MILLISECONDS_IN_DAY) > 0) {
+        return ((sortingDirection === sortingOrder.dsc) ? -1 : 1);
+      }
+      return ((sortingDirection === sortingOrder.asc) ? -1 : 1);
+    });
     this.cardsArr = Array.from(this.cardsArr);
     this.cardsArrChange.next(this.cardsArr);
   }
 
-  getCardById(id: string): ISearchItem | undefined {
-    this.card = this.cardsArr.find((el) => el.id === id);
-    return this.card;
+  filterByWord() {
+    this.cardsArr = Array.from(this.cardsArr);
+    this.cardsArrChange.next(this.cardsArr);
+  }
+
+  getCardById(id: string) {
+    this.youtubeRequests.getCardById(id).subscribe((card) => {
+      this.cardChange.next(card[0]);
+      [this.card] = card;
+    });
   }
 }

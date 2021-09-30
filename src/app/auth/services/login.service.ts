@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject, Subscription } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Subscription,
+} from 'rxjs';
+
+const DEFAULT_USERNAME = 'Your name';
 
 @Injectable({
   providedIn: 'root',
@@ -11,52 +17,47 @@ export class LoginService {
 
   isLogged: boolean;
 
-  stream$: BehaviorSubject<string> = new BehaviorSubject<string>('Your name');
+  userName$: BehaviorSubject<string> = new BehaviorSubject<string>('Your name');
+
+  isLoggedStream$: Observable<boolean> = new Observable<boolean>((observer) => {
+    observer.next(this.isLogged);
+  });
 
   sub: Subscription;
 
   constructor() {
-    this.name = 'Your name';
-    console.log('name = ', this.name);
+    this.name = DEFAULT_USERNAME;
     this.password = '';
     this.isLogged = Boolean(localStorage.getItem('name'));
-    console.log('name = ', this.isLogged);
-    this.sub = this.stream$.subscribe((value) => {
+    this.sub = this.userName$.subscribe((value) => {
       this.name = value;
     });
+
+    this.isLoggedStream$.subscribe((value) => { this.isLogged = value; });
   }
 
-  isAuthentificated():Promise<boolean> {
-    console.log('logservice ', this.isLogged);
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(this.isLogged);
-      }, 1000);
-    });
-  }
-
-  submitDateToLocalStorage(name: string, password: string) {
+  submitDataToLocalStorage(name: string, password: string) {
     this.name = name;
     this.password = password;
     localStorage.setItem('name', this.name);
     localStorage.setItem('password', this.password);
     this.isLogged = true;
-    this.stream$.next(this.name);
+    this.userName$.next(this.name);
   }
 
-  clearDateInLocalStorage() {
+  clearDataInLocalStorage() {
     this.name = 'Your name';
     this.password = '';
     localStorage.removeItem('name');
     localStorage.removeItem('password');
     this.isLogged = false;
-    this.stream$.next(this.name);
+    this.userName$.next(this.name);
   }
 
-  getName():Subject<string> {
+  getName():BehaviorSubject<string> {
     if (localStorage.getItem('name')) this.name = localStorage.getItem('name') as string;
     else this.name = 'Your name';
-    this.stream$.next(this.name);
-    return this.stream$;
+    this.userName$.next(this.name);
+    return this.userName$;
   }
 }

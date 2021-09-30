@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { ShowSettingsService } from '../../../services/show-settings.service';
@@ -11,10 +10,6 @@ import { ShowSettingsService } from '../../../services/show-settings.service';
   styleUrls: ['./settings.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent {
   constructor(public showSettingsService: ShowSettingsService) {}
-
-  ngOnInit(): void {
-    console.log('On init');
-  }
 }

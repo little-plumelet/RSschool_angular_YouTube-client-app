@@ -1,4 +1,4 @@
-import { ISearchItem } from '../../../models/search-item.model';
+/*import { ISearchItem } from '../../../models/search-item.model';
 
   export const items: ISearchItem[] = [
     {
@@ -744,3 +744,4 @@ import { ISearchItem } from '../../../models/search-item.model';
       }
     }
   ]
+*/

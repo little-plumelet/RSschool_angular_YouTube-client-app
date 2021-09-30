@@ -1,11 +1,16 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
+  OnInit,
+  OnDestroy,
 } from '@angular/core';
-import { ISearchItem } from '../../../../youtube/models/search-item.model';
-import { YoutubeService } from '../../../../youtube/services/youtube.service';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { YoutubeService } from 'src/app/youtube/services/youtube.service';
 import { FilterCardsService } from '../../../../youtube/services/filter-cards.service';
+
+const DEBOUNCE_TIME = 1000;
+const INPUT_VALUE_MIN_LENGTH = 3;
 
 @Component({
   selector: 'app-search-form',
@@ -13,23 +18,32 @@ import { FilterCardsService } from '../../../../youtube/services/filter-cards.se
   styleUrls: ['./search-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchFormComponent implements OnInit {
-  searchInput;
+export class SearchFormComponent implements OnInit, OnDestroy {
+  inputValue = '';
 
-  searchResultArr: ISearchItem[];
+  inputValue$ = new Subject<string>();
 
-  constructor(public youtubeService: YoutubeService,
-    public filterCardsService: FilterCardsService) {
-    this.searchInput = '';
-    this.searchResultArr = [];
+  subscription = new Subscription();
+
+  constructor(
+    public filterCardsService: FilterCardsService,
+    public youtubeService: YoutubeService,
+  ) {}
+
+  ngOnInit() {
+    this.subscription = this.inputValue$.pipe(
+      debounceTime(DEBOUNCE_TIME),
+      distinctUntilChanged(),
+    ).subscribe(() => this.youtubeService.getCards(this.inputValue));
   }
 
-  ngOnInit(): void {
-    console.log('On init');
+  setValue() {
+    if (this.inputValue.length >= INPUT_VALUE_MIN_LENGTH) {
+      this.inputValue$.next(this.inputValue);
+    }
   }
 
-  getResult() {
-    this.youtubeService.createCards(); // временный код - здесь мы должны получить результат поиска
-    this.searchInput = '';
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

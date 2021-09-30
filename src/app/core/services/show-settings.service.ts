@@ -5,11 +5,7 @@ import { Injectable } from '@angular/core';
 })
 
 export class ShowSettingsService {
-  showFilterPanel: boolean;
-
-  constructor() {
-    this.showFilterPanel = false;
-  }
+  showFilterPanel = false;
 
   toggleFilterPanel() {
     this.showFilterPanel = !this.showFilterPanel;

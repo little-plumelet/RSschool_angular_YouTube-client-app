@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { Subject } from 'rxjs';
-import { LoginService } from 'src/app/auth/services/login.service';
+import { LoginService } from 'src/app/auth/auth.module';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +12,13 @@ import { LoginService } from 'src/app/auth/services/login.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  stream$: Subject<string>;
+  name$: Subject<string>;
 
   constructor(public loginService: LoginService) {
-    this.stream$ = this.loginService.getName();
+    this.name$ = this.loginService.getName();
+  }
+
+  clearData() {
+    this.loginService.clearDataInLocalStorage();
   }
 }

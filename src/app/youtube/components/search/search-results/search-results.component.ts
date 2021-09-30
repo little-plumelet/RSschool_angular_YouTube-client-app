@@ -1,12 +1,15 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/redux/state.models';
 import { Observable } from 'rxjs';
+import { ISearchItem } from 'src/app/youtube/models/search-item.model';
+import { getVideoCards } from 'src/app/redux/actions/videocards.actions';
+import { selectVideoCardsArray } from 'src/app/redux/selectors/selectors';
 import { YoutubeService } from '../../../services/youtube.service';
 import { FilterCardsService } from '../../../services/filter-cards.service';
-import { ISearchItem } from '../../../models/search-item.model';
 
 @Component({
   selector: 'app-search-results',
@@ -14,17 +17,15 @@ import { ISearchItem } from '../../../models/search-item.model';
   styleUrls: ['./search-results.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchResultsComponent implements OnInit {
-  itemsArrObservable: Observable<ISearchItem[]>;
+export class SearchResultsComponent {
+  cards: Observable<ISearchItem[]>;
 
   constructor(
     public filterCardsService: FilterCardsService,
     public youtubeService: YoutubeService,
+    private store: Store<AppState>,
   ) {
-    this.itemsArrObservable = this.youtubeService.getCards();
-  }
-
-  ngOnInit(): void {
-    console.log('OnInit');
+    this.store.dispatch(getVideoCards());
+    this.cards = this.store.select(selectVideoCardsArray);
   }
 }

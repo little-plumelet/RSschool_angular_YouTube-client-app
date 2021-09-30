@@ -6,30 +6,66 @@ import {
   Renderer2,
 } from '@angular/core';
 
+const MILLISECONDS_IN_DAY = 1000 * 60 * 60 * 24;
+
+interface IDatePanel {
+  Year: number;
+  Month: number;
+  Day: number;
+}
+
+interface IVideoStylesMap {
+  green: number[],
+  blue: number[],
+  yellow: number[],
+  red: number[],
+}
+
+const videoStylesMap: IVideoStylesMap = {
+  green: [1, 6],
+  blue: [7, 29],
+  yellow: [30, 179],
+  red: [180, Infinity],
+};
+
+function createDatePanel(date: Date): IDatePanel {
+  return {
+    Year: date.getFullYear(),
+    Month: date.getMonth(),
+    Day: date.getDate(),
+  };
+}
+
+function calculateDifference(currentDate: Date, publishingDate: Date): number {
+  const currentDatePanel = createDatePanel(currentDate);
+  const publishingDatePanel = createDatePanel(publishingDate);
+
+  return Math.floor(
+    (Date.UTC(currentDatePanel.Year, currentDatePanel.Month, currentDatePanel.Day)
+    - Date.UTC(publishingDatePanel.Year, publishingDatePanel.Month, publishingDatePanel.Day)
+    ) / MILLISECONDS_IN_DAY,
+  );
+}
+
 @Directive({
   selector: '[appSearchItemStyle]',
 })
 export class SearchItemStyleDirective implements OnInit {
   @Input() dateStr: string = '';
 
-  diff: number;
+  diff = 0;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    this.diff = 0;
-  }
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit() {
     const currentDate = new Date();
-    this.dateStr = this.dateStr.replace('/(T[A-Za-z0-9_-]*/g', '');
-    const date = new Date(this.dateStr);
-    this.diff = Math.floor((Date.UTC(currentDate.getFullYear(),
-      currentDate.getMonth(), currentDate.getDate())
-    - Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
-    / (1000 * 60 * 60 * 24));
+    const publishingDate = new Date(this.dateStr.replace('/(T[A-Za-z0-9_-]*/g', ''));
 
-    if (this.diff < 7) this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'green');
-    else if (this.diff < 30) this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'blue');
-    else if (this.diff >= 30 && this.diff < 180) this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'yellow');
-    else this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'red');
+    this.diff = calculateDifference(currentDate, publishingDate);
+
+    this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', (Object.keys(videoStylesMap).find(
+      (key) => (this.diff >= videoStylesMap[key as keyof IVideoStylesMap][0]
+        && this.diff < videoStylesMap[key as keyof IVideoStylesMap][1]),
+    )));
   }
 }

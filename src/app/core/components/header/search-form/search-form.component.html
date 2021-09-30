@@ -5,12 +5,8 @@
   type="text"
   name="search"
   placeholder="What do you want to find?"
-  [(ngModel)]="searchInput"
+  [(ngModel)]="inputValue"
+  (input)="setValue()"
   >
-  <button
-   mat-raised-button color="primary"
-   (click)="getResult()"
-   (click)="filterCardsService.changeFilterWord('')"
-  >Search</button>
   <app-settings></app-settings>
 </form>
